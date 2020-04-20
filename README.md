@@ -1,6 +1,6 @@
 # Harm Reduction Frontend
 
-Iterface for running Revere's overdose response program.
+Interface for running Revere's overdose response program.
 
 # Workflows
 
