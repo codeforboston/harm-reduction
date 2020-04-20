@@ -16,6 +16,10 @@ export default () => (
       You can browse all data in the tables below. Each tab has several views,
       which you can select by clicking on the arrow in the upper-left corner.
     </P>
+    <P>
+      Hosted on{' '}
+      <a href="https://github.com/alexjball/harm-reduction-frontend">Github</a>.
+    </P>
     <Airtable.Base useCardLayout />
   </>
 );
