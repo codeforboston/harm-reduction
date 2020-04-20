@@ -10,7 +10,6 @@ const embed = config => ({
   ...props
 }) => {
   const ref = useRef(null);
-
   return (
     <div>
       {showRefresh && (
@@ -48,7 +47,6 @@ export default {
   Base: embed({
     src: 'https://airtable.com/embed/shrmD4T1dU1VdykBo',
     showRefresh: true,
-    useCardLayout: true,
   }),
   RecordParticipantForm: embed({
     src: 'https://airtable.com/embed/shrFwOTOVDGbQDmMP',

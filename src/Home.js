@@ -20,6 +20,6 @@ export default () => (
       Hosted on{' '}
       <a href="https://github.com/alexjball/harm-reduction-frontend">Github</a>.
     </P>
-    <Airtable.Base useCardLayout />
+    <Airtable.Base />
   </>
 );
