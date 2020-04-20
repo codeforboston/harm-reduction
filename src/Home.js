@@ -8,7 +8,7 @@ export default () => (
     <img
       src={processDiagram}
       alt="SUDO Workflow Diagram"
-      style={{ marginBottom: '1em' }}
+      style={{ marginBottom: '1em', maxHeight: '300px' }}
     />
     <P>
       Hello! This site demonstrates workflows for running Revere's overdose
