@@ -1,9 +1,9 @@
-import React from 'react';
 import { render } from '@testing-library/react';
-import { AppStateProvider, useAppState } from '.';
-import { addParticipant, updateParticipant } from './actions';
-import { initialState } from './reducer';
+import React from 'react';
 import { act } from 'react-dom/test-utils';
+import { AppStateProvider, useAppState } from '.';
+import { updateParticipant } from './actions';
+import { initialState } from './reducer';
 
 const renderApp = () =>
   render(
