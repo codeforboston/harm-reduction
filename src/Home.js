@@ -1,9 +1,15 @@
 import React from 'react';
 import Airtable from './Airtable';
 import { P } from './widgets';
+import processDiagram from './assets/SUDI-Workflow.svg';
 
 export default () => (
   <>
+    <img
+      src={processDiagram}
+      alt="SUDO Workflow Diagram"
+      style={{ marginBottom: '1em' }}
+    />
     <P>
       Hello! This site demonstrates workflows for running Revere's overdose
       response. It uses{' '}
