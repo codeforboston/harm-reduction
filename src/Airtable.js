@@ -7,20 +7,28 @@ const embed = config => ({
   viewControls = true,
   showRefresh = config.showRefresh,
   style,
+  label = config.label,
   ...props
 }) => {
   const ref = useRef(null);
   return (
     <div>
-      {showRefresh && (
-        <Button
-          variant="outline-secondary"
-          style={{ margin: '10px' }}
-          onClick={() => (ref.current.src += '')}
-        >
-          Refresh Table
-        </Button>
-      )}
+      <div
+        style={{ background: '#666', display: 'flex', alignItems: 'center' }}
+      >
+        <div style={{ marginLeft: '10px', fontSize: '20px', color: 'white' }}>
+          {label}
+        </div>
+        {showRefresh && (
+          <Button
+            variant="light"
+            style={{ margin: '10px' }}
+            onClick={() => (ref.current.src += '')}
+          >
+            Refresh Table
+          </Button>
+        )}
+      </div>
       <iframe
         ref={ref}
         title="Base"
@@ -33,7 +41,7 @@ const embed = config => ({
         height="533"
         style={{
           background: 'transparent',
-          border: '1px solid #ccc',
+          border: '1px solid #666',
           marginBottom: '50px',
           ...style,
         }}
@@ -47,6 +55,7 @@ export default {
   Base: embed({
     src: 'https://airtable.com/embed/shrmD4T1dU1VdykBo',
     showRefresh: true,
+    label: 'All Data',
   }),
   RecordParticipantForm: embed({
     src: 'https://airtable.com/embed/shrFwOTOVDGbQDmMP',
@@ -62,16 +71,19 @@ export default {
       'https://airtable.com/embed/shrmD4T1dU1VdykBo/tblF0kMWjd3oHFjTu/viwJtGVG6IBJuA9En',
     showRefresh: true,
     useCardLayout: true,
+    label: 'Outstanding Incidents',
   }),
   Participants: embed({
     src:
       'https://airtable.com/embed/shrmD4T1dU1VdykBo/tblFZsc8OLXZO9lNu/viwIW0zZjhtYz9bCS',
     showRefresh: true,
     useCardLayout: true,
+    label: 'All Participants',
   }),
   EngagementsByParticipants: embed({
     src:
       'https://airtable.com/embed/shrmD4T1dU1VdykBo/tblPYtZuRPJaOEywQ/viw3Ijwo7QoWXHiyH',
     showRefresh: true,
+    label: 'Engagements by Participant',
   }),
 };
