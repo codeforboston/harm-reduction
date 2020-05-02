@@ -5,6 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import './Firebase';
 
 ReactDOM.render(
   <React.StrictMode>
