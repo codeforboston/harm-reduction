@@ -5,10 +5,10 @@
     }
   ],
   "settings": {
-    // Prettier applies strong formatting rules to javascript and json files.
-    // Press Shift+Alt+F to format the current document.
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
     "editor.wordWrap": "on"
   },
   "extensions": {
