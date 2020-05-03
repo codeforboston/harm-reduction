@@ -11,18 +11,17 @@
 
 .top-bar {
   background-color: rgb(77, 77, 77);
-  padding: 20px 50px 20px 50px;
+  padding: 20px 30px 20px 30px;
 }
 
 .top-bar-nav-link {
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-weight: bold;
   color: rgb(150, 150, 150);
 }
 
 .top-bar-nav-link:hover {
-  margin-right: 20px;
-  font-weight: bold;
   color: rgb(200, 200, 200);
 }
 

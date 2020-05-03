@@ -6,11 +6,14 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import './Firebase';
+import { AuthProvider } from './Auth';
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')

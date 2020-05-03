@@ -12,6 +12,8 @@ export default () => {
         <Item to="/participants" label="Participants" />
         <Item to="/incidents" label="Incidents" />
         <Item to="/engagements" label="Engagements" />
+        <div style={{ flexGrow: 1 }} />
+        <Item to="/logout" label="Log Out" />
       </Row>
     </Container>
   );

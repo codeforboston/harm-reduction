@@ -5,6 +5,7 @@ import Incidents from './Incidents';
 import Participants from './Participants';
 import Engagements from './Engagements';
 import Home from './Home';
+import Logout from './Logout';
 
 export default () => (
   <div className="content">
@@ -17,6 +18,9 @@ export default () => (
       </Route>
       <Route path="/engagements">
         <Engagements />
+      </Route>
+      <Route path="/logout">
+        <Logout />
       </Route>
       <Route path="/">
         <Home />
