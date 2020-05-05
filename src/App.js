@@ -49,7 +49,7 @@ function PrivateRoute({ children, ...rest }) {
             );
           case AuthStatus.Loading:
             return (
-              <div className="auth-loading">
+              <div className="fullscreen">
                 <Spinner animation="border" />
               </div>
             );

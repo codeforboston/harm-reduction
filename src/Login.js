@@ -8,16 +8,11 @@ import { useAuthState } from './Auth';
 
 export default () => {
   return (
-    <div
-      style={{
-        marginTop: '50px',
-        marginBottom: '50px',
-        maxWidth: '500px',
-        alignSelf: 'center',
-      }}
-    >
-      <h1>Harm Reduction</h1>
-      <LoginForm />
+    <div className="fullscreen">
+      <div className="login">
+        <h1>Harm Reduction</h1>
+        <LoginForm />
+      </div>
     </div>
   );
 };
