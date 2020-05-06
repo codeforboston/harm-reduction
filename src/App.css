@@ -1,0 +1,35 @@
+#root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.App {
+  flex: auto;
+  align-self: center;
+}
+
+.top-bar {
+  background-color: rgb(77, 77, 77);
+  padding: 20px 50px 20px 50px;
+}
+
+.top-bar-nav-link {
+  margin-right: 20px;
+  font-weight: bold;
+  color: rgb(150, 150, 150);
+}
+
+.top-bar-nav-link:hover {
+  margin-right: 20px;
+  font-weight: bold;
+  color: rgb(200, 200, 200);
+}
+
+.active-top-bar-nav-link {
+  color: white;
+}
+
+.content {
+  margin: 2%;
+}
