@@ -9,7 +9,8 @@
     "editor.codeActionsOnSave": {
       "source.fixAll": true
     },
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "files.autoSave": "off"
   },
   "extensions": {
     "recommendations": [
