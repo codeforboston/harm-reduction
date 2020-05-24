@@ -2,6 +2,7 @@ import React from 'react';
 import Airtable from './Airtable';
 import { P } from './widgets';
 import { Link } from 'react-router-dom';
+import RecordIncidentForm from './RecordIncidentForm';
 
 export default () => {
   return (
@@ -17,7 +18,8 @@ export default () => {
         <Link to="/participants">here</Link>. In the future, we will make it
         easier to add participants while recording incidents.
       </P>
-      <Airtable.RecordIncidentForm />
+        {/*      <Airtable.RecordIncidentForm /> */}
+          <RecordIncidentForm />
       <P>
         Revere performs weekly outreach in response to incidents. Outstanding
         incidents without outreach engagement are shown in the table below,

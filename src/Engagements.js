@@ -2,6 +2,7 @@ import React from 'react';
 import Airtable from './Airtable';
 import { P } from './widgets';
 import { Link } from 'react-router-dom';
+import RecordEngagementForm from './RecordEngagementForm';
 
 export default () => {
   return (
@@ -17,7 +18,8 @@ export default () => {
         <Link to="/participants">here</Link>. In the future, we will make it
         easier to add participants while recording engagements.
       </P>
-      <Airtable.RecordEngagementForm />
+      <RecordEngagementForm />
+      {/* <Airtable.RecordEngagementForm /> */}
       <P>
         Engagements are grouped by participant in the table below. When an
         outreach engagement is logged, the incident will no longer appear in the
