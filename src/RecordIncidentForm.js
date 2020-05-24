@@ -31,7 +31,12 @@ export default () => {
     try {
       await db.collection('incidents').add({
         participant: state.participant,
-        pointOfContact: state.pointOfContact
+        pointOfContact: state.pointOfContact,
+        location: state.location,
+        dateOfRequest: state.dateOfRequest,
+        pointOfContact: state.pointOfContact,
+        receivedNarcan: state.receivedNarcan,
+        notes: state.notes
       });
       update({ status: 'Submitted!' });
     } catch (e) {
@@ -88,7 +93,7 @@ export default () => {
           <Form.Control as="textarea" rows="7" />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Record Participant
+          Record Incident
         </Button>
       </Form>
     </div>

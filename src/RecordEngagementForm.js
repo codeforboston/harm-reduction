@@ -8,8 +8,7 @@ export default () => {
   const [state, update] = useReducer(
     (state, update) => ({ ...state, ...update }),
     {
-      firstName: '',
-      lastName: '',
+      participant: '',
       associatedIncident: '',
       dateEngaged: '',
       pointPerson: '',
@@ -34,9 +33,8 @@ export default () => {
     event.stopPropagation();
 
     try {
-      await db.collection('participants').add({
-        firstName: state.firstName,
-        lastName: state.lastName,
+      await db.collection('engagements').add({
+        participant: state.participant,
         associatedIncident: state.associatedIncident,
         dateEngaged: state.dateEngaged,
         pointPerson: state.pointPerson,
@@ -57,21 +55,13 @@ export default () => {
     <div>
       <h2>Add a new engagement: {state.status}</h2>
       <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-        <Form.Group controlId="firstName">
-          <Form.Label>First Name</Form.Label>
+      <Form.Group controlId="participant">
+          <Form.Label>Participant</Form.Label>
           <Form.Control
             required
-            value={state.firstName}
-            onChange={e => update({ firstName: e.target.value })}
-          />
-        </Form.Group>
-        <Form.Group controlId="lastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            required
-            value={state.lastName}
+            value={state.participant}
             type="text"
-            onChange={e => update({ lastName: e.target.value })}
+            onChange={e => update({ participant: e.target.value })}
           />
         </Form.Group>
         <FormSelect
@@ -146,7 +136,7 @@ export default () => {
           <Form.Control as="textarea" rows="7" />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Record Participant
+          Record Engagement
         </Button>
       </Form>
     </div>
