@@ -45,3 +45,15 @@
   margin: '20px';
   max-width: '500px';
 }
+
+td {
+  border: 2px solid black;
+  padding: 2px;
+}
+
+th {
+  border: 2px solid black;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

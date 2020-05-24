@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders a form and table of participants 1`] = `
+<body>
+  <div>
+    <p
+      style="font-weight: 500;"
+    >
+      Anyone that recieves help from WROC is a participant. Incidents and engagements are attached to partipicipants. Use the form below to add a new participant. Only information that is specific to the participant, such as their name and housing status, are included in the data.
+    </p>
+    <div>
+      <h2>
+        Add a new participant: 
+        waiting for input
+      </h2>
+      <form
+        class=""
+        style="margin-bottom: 20px;"
+      >
+        <div
+          class="form-group"
+        >
+          <label
+            class="form-label"
+            for="firstName"
+          >
+            First Name
+          </label>
+          <input
+            class="form-control"
+            id="firstName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="form-group"
+        >
+          <label
+            class="form-label"
+            for="lastName"
+          >
+            Last Name
+          </label>
+          <input
+            class="form-control"
+            id="lastName"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          Record Participant
+        </button>
+      </form>
+    </div>
+    <p
+      style="font-weight: 500;"
+    >
+      Once a participant is added to the system, they will appear in the table below.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            First Name
+          </th>
+          <th>
+            Last Name
+          </th>
+          <th>
+            Ethnicity
+          </th>
+          <th>
+            State of Change
+          </th>
+          <th>
+            New or Existing
+          </th>
+          <th>
+            Age
+          </th>
+          <th>
+            Gender
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            Joe
+          </td>
+          <td>
+            Schmoe
+          </td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+        </tr>
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            Sally
+          </td>
+          <td>
+            Jones
+          </td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
