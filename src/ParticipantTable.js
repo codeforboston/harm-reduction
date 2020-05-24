@@ -9,7 +9,7 @@ export default () => {
       db.collection('participants').onSnapshot(snapshot => {
         const participants = [];
         snapshot.forEach(doc => {
-          participants.push(JSON.stringify(doc.data()));
+          participants.push(JSON.stringify(doc.data(), null, 2));
         });
         setParticipants(participants);
       }),
