@@ -11,4 +11,4 @@ deploy:
   edge: true
   skip-cleanup: true
   on:
-    branch: ci-cd
+    branch: master
