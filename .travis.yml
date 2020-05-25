@@ -7,11 +7,8 @@ install: npm ci
 script: npm test && npm run build
 
 deploy:
-  provider: pages
-  local_dir: build/
+  provider: firebase
   edge: true
   skip-cleanup: true
-  target_branch: gh-pages
-  github_token: $GITHUB_TOKEN
   on:
-    branch: master
+    branch: ci-cd
