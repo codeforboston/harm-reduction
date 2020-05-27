@@ -12,7 +12,7 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 ### Contact Us 
 
-[cfb-harmreduction@codeforboston.org](cfb-harmreduction@codeforboston.org)
+[cfb-harmreduction@codeforboston.org](mailto:cfb-harmreduction@codeforboston.org)
 
 ### Important Links
 
