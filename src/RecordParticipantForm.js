@@ -12,7 +12,7 @@ export default () => {
       lastName: '',
       stateOfChange: 'Not Answered',
       newOrExisting: 'New',
-      status: 'waiting for input',
+      status: 'Waiting for input',
       age: '0',
       gender: 'Not Answered',
       ethnicity: 'Not Answered',
@@ -50,7 +50,12 @@ export default () => {
 
   return (
     <div>
-      <h2>Add a new participant: {state.status}</h2>
+      <div style={{ display: 'flex', alignItems: "baseline", justifyContent: "flex-start", marginBottom: "2em" }}>
+        <h2 style={{flex: 1}}>Add a new participant</h2>
+        <p style={{ flex: 1, fontWeight: '400', fontSize: '1em'}}>
+          <em>{state.status}</em>
+        </p>
+      </div>
       <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>

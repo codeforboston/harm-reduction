@@ -60,118 +60,125 @@ export default () => {
 
   return (
     <div>
-      <h2>Add a new engagement: {state.status}</h2>
-      <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-        <Row>
-          <Col xs="4">
-            <Row>
-              <Col>
-                <Form.Group controlId="firstName">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    value={state.firstName}
-                    onChange={e => update({ firstName: e.target.value })}
-                  />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlId="lastName">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control
-                    value={state.lastName}
-                    type="text"
-                    onChange={e => update({ lastName: e.target.value })}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Form.Group controlId="participantId">
-              <Form.Label>Participant ID</Form.Label>
+      <div
+        style={{
+          width: '50%',
+          marginLeft: '5%',
+          marginTop: '5%',
+          marginBottom: '5%',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            justifyContent: 'flex-start',
+            marginBottom: '2em',
+          }}
+        >
+          <h2 style={{ flex: 1 }}>Add a new engagement</h2>
+          <p style={{ flex: 1, fontWeight: '400', fontSize: '1em' }}>
+            <em>{state.status}</em>
+          </p>
+        </div>
+        <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+          <Row>
+            <Form.Group as={Col} controlId="firstName">
+              <Form.Label>First Name</Form.Label>
               <Form.Control
-                required
-                value={state.participantId}
+                value={state.firstName}
+                onChange={e => update({ firstName: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group as={Col} controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                value={state.lastName}
                 type="text"
-                onChange={e => update({ participantId: e.target.value })}
+                onChange={e => update({ lastName: e.target.value })}
               />
             </Form.Group>
-
-            <Form.Group controlId="associatedIncident">
-              <Form.Label>Associated Incident</Form.Label>
-              <Form.Control
-                value={state.associatedIncident}
-                type="text"
-                onChange={e => update({ associatedIncident: e.target.value })}
-              />
-            </Form.Group>
-
-            <Form.Check
-              id="narcanEnrollment"
-              style={{ margin: '20px 0 10px 0' }}
-              label="Narcan Enrollment"
-              checked={state.narcatEnrollment}
-              type="checkbox"
-              onChange={e => update({ narcatEnrollment: e.target.checked })}
+          </Row>
+          <Form.Group controlId="participantId">
+            <Form.Label>Participant ID</Form.Label>
+            <Form.Control
+              required
+              value={state.participantId}
+              type="text"
+              onChange={e => update({ participantId: e.target.value })}
             />
-            <Form.Check
-              id="firstPerson"
-              style={{ margin: '10px 0 20px 0' }}
-              label="First Person"
-              checked={state.firstPerson}
-              type="checkbox"
-              onChange={e => update({ firstPerson: e.target.checked })}
+          </Form.Group>
+          <Form.Group controlId="associatedIncident">
+            <Form.Label>Associated Incident</Form.Label>
+            <Form.Control
+              value={state.associatedIncident}
+              type="text"
+              onChange={e => update({ associatedIncident: e.target.value })}
             />
-          </Col>
-          <Col xs="8">
-            <Form.Group controlId="dateEngaged">
-              <Form.Label>Date Engaged</Form.Label>
-              <Form.Control
-                required
-                value={state.dateEngaged}
-                type="date"
-                onChange={e => update({ dateEngaged: e.target.value })}
-              />
-            </Form.Group>
-
-            <FormSelect
-              label="Point Person"
-              value={state.pointPerson}
-              onChange={handleChange}
-              options={['CarrieAnn', 'Chris']}
+          </Form.Group>
+          <Form.Check
+            id="narcanEnrollment"
+            style={{ margin: '20px 0 10px 0' }}
+            label="Narcan Enrollment"
+            checked={state.narcatEnrollment}
+            type="checkbox"
+            onChange={e => update({ narcatEnrollment: e.target.checked })}
+          />
+          <Form.Check
+            id="firstPerson"
+            style={{ margin: '10px 0 20px 0' }}
+            label="First Person"
+            checked={state.firstPerson}
+            type="checkbox"
+            onChange={e => update({ firstPerson: e.target.checked })}
+          />
+          <Form.Group controlId="dateEngaged">
+            <Form.Label>Date Engaged</Form.Label>
+            <Form.Control
+              required
+              value={state.dateEngaged}
+              type="date"
+              onChange={e => update({ dateEngaged: e.target.value })}
             />
-
-            <FormSelect
-              label="Stage of Change"
-              value={state.stageOfChange}
-              onChange={handleChange}
-              options={[
-                'Not Decided',
-                'Precontemplation',
-                'Contemplation',
-                'Preparation',
-                'Action',
-                'Maintenance',
-              ]}
+          </Form.Group>
+          <FormSelect
+            label="Point Person"
+            value={state.pointPerson}
+            onChange={handleChange}
+            options={['Not Assigned', 'CarrieAnn', 'Chris']}
+          />
+          <FormSelect
+            label="Stage of Change"
+            value={state.stageOfChange}
+            onChange={handleChange}
+            options={[
+              'Not Decided',
+              'Precontemplation',
+              'Contemplation',
+              'Preparation',
+              'Action',
+              'Maintenance',
+            ]}
+          />
+          <Form.Group controlId="followUpDate">
+            <Form.Label>Follow Up Date</Form.Label>
+            <Form.Control
+              required
+              value={state.followUpDate}
+              type="date"
+              onChange={e => update({ followUpDate: e.target.value })}
             />
-            <Form.Group controlId="followUpDate">
-              <Form.Label>Follow Up Date</Form.Label>
-              <Form.Control
-                required
-                value={state.followUpDate}
-                type="date"
-                onChange={e => update({ followUpDate: e.target.value })}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Form.Group controlId="notes">
-          <Form.Label>Notes</Form.Label>
-          <Form.Control as="textarea" rows="7" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Record Engagement
-        </Button>{' '}
-        STATUS = {state.status}
-      </Form>
+          </Form.Group>
+          <Form.Group controlId="notes">
+            <Form.Label>Notes</Form.Label>
+            <Form.Control as="textarea" rows="7" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Record Engagement
+          </Button>{' '}
+          STATUS: {state.status}
+        </Form>
+      </div>
     </div>
   );
 };
