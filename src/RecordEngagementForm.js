@@ -1,8 +1,7 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import FormSelect from './FormSelect';
 import { db } from './Firebase';
@@ -19,12 +18,41 @@ export default () => {
       pointPerson: '',
       stateOfChange: '',
       needsIdentified: '',
-      narcatEnrollment: '',
+      narcanEnrollment: '',
       followUpDate: '',
       firstPerson: '',
       notes: '',
       status: 'Waiting for input',
     }
+  );
+  const [incidents, setIncidents] = useState([]);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(
+    () =>
+      db.collection('incidents').onSnapshot(snapshot => {
+        const incidents = [];
+        snapshot.forEach(doc => {
+          incidents.push(doc.data());
+        });
+        setIncidents(incidents);
+      }),
+    []
+  );
+
+  useEffect(
+    () =>
+      db.collection('participants').onSnapshot(snapshot => {
+        const participants = [];
+        snapshot.forEach(doc => {
+          participants.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setParticipants(participants);
+      }),
+    []
   );
 
   const handleChange = e => {
@@ -47,7 +75,7 @@ export default () => {
         pointPerson: state.pointPerson,
         stateOfChange: state.stateOfChange,
         needsIdentified: state.needsIdentified,
-        narcatEnrollment: state.narcatEnrollment,
+        narcanEnrollment: state.narcanEnrollment,
         followUpDate: state.followUpDate,
         firstPerson: state.firstPerson,
         notes: state.notes,
@@ -56,6 +84,46 @@ export default () => {
     } catch (e) {
       update({ status: 'Error! ' + e });
     }
+  };
+
+  const displayIncident = incident => {
+    return (
+      <Form.Group
+        style={{
+          border: '.5px',
+          borderStyle: 'solid',
+          borderColor: 'lightgray',
+          borderRadius: '5px',
+          padding: '1em',
+        }}
+      >
+        <p>Date of Incident: {incident.dateOfRequest}</p>
+        <p>Location: {incident.location}</p>
+        <p>Recieved Narcan: {incident.receivedNarcan}</p>
+        <p>ParticipantId: {incident.participantId}</p>
+      </Form.Group>
+    );
+  };
+
+  const getIncidents = participantId => {
+    const filteredIncidents = incidents.filter(
+      a => a.participantId === state.participantId
+    );
+    return filteredIncidents.length > 0 ? (
+      filteredIncidents.map(a => displayIncident(a))
+    ) : (
+      <p>
+        <em>No incident associated with this engagement</em>
+      </p>
+    );
+  };
+
+  const fillParticipantInfo = e => {
+    const partFiltered = participants.filter(a => a.id === e.target.value);
+    update({ participantId: e.target.value });
+
+    update({ firstName: partFiltered[0] ? partFiltered[0].firstName : '' });
+    update({ lastName: partFiltered[0] ? partFiltered[0].lastName : '' });
   };
 
   return (
@@ -105,24 +173,20 @@ export default () => {
               required
               value={state.participantId}
               type="text"
-              onChange={e => update({ participantId: e.target.value })}
+              onChange={e => fillParticipantInfo(e)}
             />
           </Form.Group>
           <Form.Group controlId="associatedIncident">
             <Form.Label>Associated Incident</Form.Label>
-            <Form.Control
-              value={state.associatedIncident}
-              type="text"
-              onChange={e => update({ associatedIncident: e.target.value })}
-            />
+            {getIncidents(state.participantId)}
           </Form.Group>
           <Form.Check
             id="narcanEnrollment"
             style={{ margin: '20px 0 10px 0' }}
             label="Narcan Enrollment"
-            checked={state.narcatEnrollment}
+            checked={state.narcanEnrollment}
             type="checkbox"
-            onChange={e => update({ narcatEnrollment: e.target.checked })}
+            onChange={e => update({ narcanEnrollment: e.target.checked })}
           />
           <Form.Check
             id="firstPerson"
