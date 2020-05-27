@@ -10,12 +10,9 @@ Our partner in the project is the City of Revere Substance Use Disorder Initiati
 
 The SUDI office offers support and resources as well as ongoing care in these communities via direct outreach with individuals who have experienced a nonfatal overdose.
 
-### Contacts 
+### Contact Us 
 
-Reuben Kantor -- [rkantor@revere.org](rkantor@revere.org)    
-
-Julia Newhall -- [jnewhall@revere.org](jnewhall@revere.org)  
-
+[cfb-harmreduction@codeforboston.org](mailto:cfb-harmreduction@codeforboston.org)
 
 ### Important Links
 
