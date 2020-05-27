@@ -13,7 +13,7 @@ export default () => {
       participantId: '',
       firstName: '',
       lastName: '',
-      associatedIncident: '',
+      associatedIncident: 'None selected',
       dateEngaged: '',
       pointPerson: '',
       stateOfChange: '',
@@ -33,7 +33,10 @@ export default () => {
       db.collection('incidents').onSnapshot(snapshot => {
         const incidents = [];
         snapshot.forEach(doc => {
-          incidents.push(doc.data());
+          incidents.push({
+            id: doc.id,
+            ...doc.data(),
+          });
         });
         setIncidents(incidents);
       }),
@@ -97,6 +100,7 @@ export default () => {
           padding: '1em',
         }}
       >
+        <p>Incident Id: {incident.id}</p>
         <p>Date of Incident: {incident.dateOfRequest}</p>
         <p>Location: {incident.location}</p>
         <p>Recieved Narcan: {incident.receivedNarcan}</p>
@@ -104,27 +108,16 @@ export default () => {
       </Form.Group>
     );
   };
-
-  const getIncidents = participantId => {
-    const filteredIncidents = incidents.filter(
-      a => a.participantId === state.participantId
-    );
-    return filteredIncidents.length > 0 ? (
-      filteredIncidents.map(a => displayIncident(a))
-    ) : (
-      <p>
-        <em>No incident associated with this engagement</em>
-      </p>
-    );
-  };
-
   const fillParticipantInfo = e => {
     const partFiltered = participants.filter(a => a.id === e.target.value);
     update({ participantId: e.target.value });
-
     update({ firstName: partFiltered[0] ? partFiltered[0].firstName : '' });
     update({ lastName: partFiltered[0] ? partFiltered[0].lastName : '' });
   };
+
+  const associatedIncidents = incidents.filter(
+    a => a.participantId === state.participantId
+  );
 
   return (
     <div>
@@ -176,9 +169,18 @@ export default () => {
               onChange={e => fillParticipantInfo(e)}
             />
           </Form.Group>
-          <Form.Group controlId="associatedIncident">
-            <Form.Label>Associated Incident</Form.Label>
-            {getIncidents(state.participantId)}
+          <FormSelect
+            label="Associated Incident"
+            options={[
+              'None selected',
+              ...associatedIncidents.map(a => a.id),
+            ]}
+            onChange={handleChange}
+          />
+          <Form.Group>
+            {associatedIncidents
+              .filter(a => a.id === state.associatedIncident)
+              .map(a => displayIncident(a))}
           </Form.Group>
           <Form.Check
             id="narcanEnrollment"
