@@ -33,4 +33,79 @@ Julia Newhall -- [jnewhall@revere.org](jnewhall@revere.org)
 
 ### Github Setup
 
+### Prerequisites
+
+#### Node
+
+If you don't have nodejs installed, [install it](https://nodejs.org/en/download/). If you don't know, do `node --version` in your terminal/command prompt. If you don't get a number, you don't have it.
+
+#### Git and Github
+
+If you're new to github check out [Github Guide, Hello World](https://guides.github.com/activities/hello-world/) to make an account and get started with Github and [How to: fork a repo](https://help.github.com/articles/fork-a-repo/) to learn how to fork a repo.
+
+### Setup
+
+1. Fork the repository: On GitHub, navigate to the [repository](https://github.com/codeforboston/harm-reduction). In the top-right corner of the page, click Fork.
+2. On GitHub, navigate to your fork of the harm-reduction repository. In the Clone with HTTPs section, click to copy the clone URL for the repository.
+3. Clone your fork: In your terminal type `git clone`, paste the URL you copied and press enter. In your terminal/command prompt cd (change directory) into the new folder. Inside the directory:
+
+```
+git clone \
+https://github.com/YOUR-USERNAME/harm-reduction.git
+cd harm-reduction
+```
+
+4. Add the harm-reduction repository as a remote to your fork:
+
+```
+git remote add upstream \
+https://github.com/codeforboston/harm-reduction.git
+```
+
+4. Installing: Checkout branch reboot and install
+
+```
+git checkout reboot
+npm install
+```
+
+**firebase** is the active development branch. Do not touch the `master` branch.
+
+### Running the App
+
+- In your terminal/command prompt run `npm start` to start the app. It will open automatically in a browser window.
+
+- To stop the local server press ctrl + c in your terminal
+
+### Updating
+
+To learn more about keeping your fork up to date view this [article](https://help.github.com/articles/syncing-a-fork/),1. When there is an update, in your terminal inside your local repo:
+
+```
+git checkout reboot
+git pull upstream
+git pull upstream reboot
+```
+
+After running this command once, you may omit the `git pull upstream` step, and only enter `git pull upstream reboot`.
+
+If there is a merge conflict that cannot be resolved automatically, the output from the `git pull` command will read: "Automatic merge has failed; fix conflicts and then commit the result." For more information, read this [article](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/).
+
+**REMEMBER:** If there are no merge conflicts, or after resolving any conflicts, run the following in terminal:
+
+```
+npm install
+```
+
+## Testing
 //TODO 
+
+## Deployment
+//TODO
+
+## Tech Stack
+
+- [Reactjs](https://facebook.github.io/react/docs/react-api.html)
+- [Bootstrap](https://getbootstrap.com/)
+
+
