@@ -12,10 +12,7 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 ### Contacts 
 
-Reuben Kantor -- [rkantor@revere.org](rkantor@revere.org)    
-
-Julia Newhall -- [jnewhall@revere.org](jnewhall@revere.org)  
-
+cfb-harmreduction@codeforboston.org
 
 ### Important Links
 
