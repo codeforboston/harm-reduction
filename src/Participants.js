@@ -1,6 +1,7 @@
 import React from 'react';
-import Airtable from './Airtable';
 import { P } from './widgets';
+import RecordParticipantForm from './RecordParticipantForm';
+import ParticipantTable from './ParticipantTable';
 
 export default () => {
   return (
@@ -11,13 +12,21 @@ export default () => {
         new participant. Only information that is specific to the participant,
         such as their name and housing status, are included in the data.
       </P>
-      <Airtable.RecordParticipantForm />
+      <div
+        style={{
+          width: '50%',
+          marginLeft: '5%',
+          marginTop: '5%',
+          marginBottom: '5%',
+        }}
+      >
+        <RecordParticipantForm />
+      </div>
       <P>
         Once a participant is added to the system, they will appear in the table
-        below. Clicking on a participant will show detailed personal information
-        and associated incidents and engagements.
+        below.
       </P>
-      <Airtable.Participants useCardLayout showRefresh />
+      <ParticipantTable />
     </>
   );
 };
