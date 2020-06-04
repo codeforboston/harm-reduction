@@ -1,4 +1,4 @@
-# Configures builds for all branches and deployment on the "prod" branch.
+# Configures builds for all branches and deployment on the "master" branch.
 
 language: node_js
 node_js: node
@@ -9,6 +9,8 @@ script: npm test && npm run build
 deploy:
   provider: firebase
   edge: true
-  skip-cleanup: true
   on:
     branch: master
+    # Skip deployment if credentials are unset
+    condition: -n $FIREBASE_TOKEN
+
