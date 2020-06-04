@@ -1,4 +1,4 @@
-# Configures builds for all branches and deployment on the "prod" branch.
+# Configures builds for all branches and deployment on the "master" branch.
 
 language: node_js
 node_js: node
@@ -7,11 +7,10 @@ install: npm ci
 script: npm test && npm run build
 
 deploy:
-  provider: pages
-  local_dir: build/
+  provider: firebase
   edge: true
-  skip-cleanup: true
-  target_branch: gh-pages
-  github_token: $GITHUB_TOKEN
   on:
     branch: master
+    # Skip deployment if credentials are unset
+    condition: -n $FIREBASE_TOKEN
+
