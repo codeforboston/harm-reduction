@@ -1,5 +1,7 @@
 # Harm Reduction
 
+[![Build Status](https://travis-ci.org/codeforboston/harm-reduction.svg?branch=master)](https://travis-ci.org/codeforboston/harm-reduction)
+
 [Demo App](https://cfb-harm-reduction.web.app/)
 
 ### About the Project
