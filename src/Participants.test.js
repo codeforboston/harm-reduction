@@ -4,6 +4,13 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { db } from './Firebase';
 import Participants from './Participants';
+import {
+  age,
+  ethnicity,
+  gender,
+  stateOfChange,
+  newOrExisting,
+} from './RecordParticipantForm';
 
 jest.mock('./Firebase');
 
@@ -54,5 +61,10 @@ test('Can record a participant', async () => {
   expect(db.collection().add).toHaveBeenCalledWith({
     firstName,
     lastName,
+    age: age.default,
+    ethnicity: ethnicity.default,
+    gender: gender.default,
+    newOrExisting: newOrExisting.default,
+    stateOfChange: stateOfChange.default,
   });
 });

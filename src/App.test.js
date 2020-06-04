@@ -17,6 +17,10 @@ const renderApp = () =>
     </MemoryRouter>
   );
 
+db.collection.mockImplementation(() => ({
+  onSnapshot: callback => callback([]),
+}));
+
 test('renders login page if not authenticated', async () => {
   auth.onAuthStateChanged.mockImplementationOnce(callback => callback(null));
   const { getByText } = renderApp();
@@ -30,9 +34,6 @@ test('renders home page if authenticated', () => {
 });
 
 test('can select participants', () => {
-  db.collection.mockImplementationOnce(() => ({
-    onSnapshot: callback => callback([]),
-  }));
   auth.onAuthStateChanged.mockImplementationOnce(callback => callback({}));
   const { getByText } = renderApp();
   userEvent.click(getByText('Participants'));

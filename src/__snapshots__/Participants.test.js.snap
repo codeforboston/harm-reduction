@@ -8,56 +8,297 @@ exports[`Renders a form and table of participants 1`] = `
     >
       Anyone that recieves help from WROC is a participant. Incidents and engagements are attached to partipicipants. Use the form below to add a new participant. Only information that is specific to the participant, such as their name and housing status, are included in the data.
     </p>
-    <div>
-      <h2>
-        Add a new participant: 
-        waiting for input
-      </h2>
-      <form
-        class=""
-        style="margin-bottom: 20px;"
-      >
+    <div
+      style="width: 50%; margin-left: 5%; margin-top: 5%; margin-bottom: 5%;"
+    >
+      <div>
         <div
-          class="form-group"
+          style="display: flex; align-items: baseline; justify-content: flex-start; margin-bottom: 2em;"
         >
-          <label
-            class="form-label"
-            for="firstName"
+          <h2
+            style="flex: 1;"
           >
-            First Name
-          </label>
-          <input
-            class="form-control"
-            id="firstName"
-            required=""
-            type="text"
-            value=""
-          />
-        </div>
-        <div
-          class="form-group"
-        >
-          <label
-            class="form-label"
-            for="lastName"
+            Add a new participant
+          </h2>
+          <p
+            style="flex: 1; font-weight: 400; font-size: 1em;"
           >
-            Last Name
-          </label>
-          <input
-            class="form-control"
-            id="lastName"
-            required=""
-            type="text"
-            value=""
-          />
+            <em>
+              Waiting for input
+            </em>
+          </p>
         </div>
-        <button
-          class="btn btn-primary"
-          type="submit"
+        <form
+          class=""
+          style="margin-bottom: 20px;"
         >
-          Record Participant
-        </button>
-      </form>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="firstName"
+            >
+              First Name
+            </label>
+            <input
+              class="form-control"
+              id="firstName"
+              required=""
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="lastName"
+            >
+              Last Name
+            </label>
+            <input
+              class="form-control"
+              id="lastName"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-check"
+            style="margin: 20px 0px 10px 0px;"
+          >
+            <input
+              class="form-check-input"
+              id="revereResident"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="revereResident"
+              title=""
+            >
+              Revere Resident
+            </label>
+          </div>
+          <div
+            class="form-check"
+            style="margin: 10px 0px 20px 0px;"
+          >
+            <input
+              class="form-check-input"
+              id="homeless"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="homeless"
+              title=""
+            >
+              Homeless
+            </label>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="stateOfChange"
+            >
+              State of Change
+            </label>
+            <select
+              class="form-control"
+              id="stateOfChange"
+              type="text"
+            >
+              <option>
+                Not Decided
+              </option>
+              <option>
+                Precontemplation
+              </option>
+              <option>
+                Contemplation
+              </option>
+              <option>
+                Preparation
+              </option>
+              <option>
+                Action
+              </option>
+              <option>
+                Maintenance
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="newOrExisting"
+            >
+              New or Existing
+            </label>
+            <select
+              class="form-control"
+              id="newOrExisting"
+              type="text"
+            >
+              <option>
+                New
+              </option>
+              <option>
+                Existing
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="age"
+            >
+              Age
+            </label>
+            <select
+              class="form-control"
+              id="age"
+              type="text"
+            >
+              <option>
+                Not Answered
+              </option>
+              <option>
+                0 - 4
+              </option>
+              <option>
+                5 - 11
+              </option>
+              <option>
+                12 - 14
+              </option>
+              <option>
+                15 - 17
+              </option>
+              <option>
+                18 - 20
+              </option>
+              <option>
+                21 - 24
+              </option>
+              <option>
+                25 - 44
+              </option>
+              <option>
+                45 - 64
+              </option>
+              <option>
+                65+
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="gender"
+            >
+              Gender
+            </label>
+            <select
+              class="form-control"
+              id="gender"
+              type="text"
+            >
+              <option>
+                Not Answered
+              </option>
+              <option>
+                male
+              </option>
+              <option>
+                female
+              </option>
+              <option>
+                other
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="ethnicity"
+            >
+              Ethnicity
+            </label>
+            <select
+              class="form-control"
+              id="ethnicity"
+              type="text"
+            >
+              <option>
+                Not Answered
+              </option>
+              <option>
+                Non-Hispanic
+              </option>
+              <option>
+                Hispanic
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="race"
+            >
+              Race
+            </label>
+            <select
+              class="form-control"
+              id="race"
+              type="text"
+            >
+              <option>
+                Not Answered
+              </option>
+              <option>
+                American Indian/Alaskan
+              </option>
+              <option>
+                Asian
+              </option>
+              <option>
+                African American/Black
+              </option>
+              <option>
+                Caucasian/White
+              </option>
+              <option>
+                More Than One Race
+              </option>
+              <option>
+                Native Hawaiian/Pacific Islander
+              </option>
+            </select>
+          </div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Record Participant
+          </button>
+        </form>
+      </div>
     </div>
     <p
       style="font-weight: 500;"

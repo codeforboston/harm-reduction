@@ -4,19 +4,75 @@ import Button from 'react-bootstrap/Button';
 import FormSelect from './FormSelect';
 import { db } from './Firebase';
 
+export const stateOfChange = {
+  default: 'Not Decided',
+  options: [
+    'Not Decided',
+    'Precontemplation',
+    'Contemplation',
+    'Preparation',
+    'Action',
+    'Maintenance',
+  ],
+};
+
+export const newOrExisting = {
+  default: 'New',
+  options: ['New', 'Existing'],
+};
+
+export const age = {
+  default: 'Not Answered',
+  options: [
+    'Not Answered',
+    '0 - 4',
+    '5 - 11',
+    '12 - 14',
+    '15 - 17',
+    '18 - 20',
+    '21 - 24',
+    '25 - 44',
+    '45 - 64',
+    '65+',
+  ],
+};
+
+export const gender = {
+  default: 'Not Answered',
+  options: ['Not Answered', 'male', 'female', 'other'],
+};
+
+export const ethnicity = {
+  default: 'Not Answered',
+  options: ['Not Answered', 'Non-Hispanic', 'Hispanic'],
+};
+
+export const race = {
+  default: 'Not Answered',
+  options: [
+    'Not Answered',
+    'American Indian/Alaskan',
+    'Asian',
+    'African American/Black',
+    'Caucasian/White',
+    'More Than One Race',
+    'Native Hawaiian/Pacific Islander',
+  ],
+};
+
 export default () => {
   const [state, update] = useReducer(
     (state, update) => ({ ...state, ...update }),
     {
       firstName: '',
       lastName: '',
-      stateOfChange: 'Not Answered',
-      newOrExisting: 'New',
+      stateOfChange: stateOfChange.default,
+      newOrExisting: newOrExisting.default,
       status: 'Waiting for input',
-      age: '0',
-      gender: 'Not Answered',
-      ethnicity: 'Not Answered',
-      race: 'Not Answered',
+      age: age.default,
+      gender: gender.default,
+      ethnicity: ethnicity.default,
+      race: race.default,
       revereResident: false,
       homeless: false,
     }
@@ -50,9 +106,16 @@ export default () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: "baseline", justifyContent: "flex-start", marginBottom: "2em" }}>
-        <h2 style={{flex: 1}}>Add a new participant</h2>
-        <p style={{ flex: 1, fontWeight: '400', fontSize: '1em'}}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'flex-start',
+          marginBottom: '2em',
+        }}
+      >
+        <h2 style={{ flex: 1 }}>Add a new participant</h2>
+        <p style={{ flex: 1, fontWeight: '400', fontSize: '1em' }}>
           <em>{state.status}</em>
         </p>
       </div>
@@ -95,63 +158,37 @@ export default () => {
           label="State of Change"
           value={state.stateOfChange}
           onChange={handleChange}
-          options={[
-            'Not Decided',
-            'Precontemplation',
-            'Contemplation',
-            'Preparation',
-            'Action',
-            'Maintenance',
-          ]}
+          options={stateOfChange.options}
         />
         <FormSelect
           label="New or Existing"
           value={state.newOrExisting}
           onChange={handleChange}
-          options={['New', 'Existing']}
+          options={newOrExisting.options}
         />
         <FormSelect
           label="Age"
           value={state.age}
           onChange={handleChange}
-          options={[
-            'Not Answered',
-            '0 - 4',
-            '5 - 11',
-            '12 - 14',
-            '15 - 17',
-            '18 - 20',
-            '21 - 24',
-            '25 - 44',
-            '45 - 64',
-            '65+',
-          ]}
+          options={age.options}
         />
         <FormSelect
           label="Gender"
           value={state.gender}
           onChange={handleChange}
-          options={['Not Answered', 'male', 'female', 'other']}
+          options={gender.options}
         />
         <FormSelect
           label="Ethnicity"
           value={state.ethnicity}
           onChange={handleChange}
-          options={['Not Answered', 'Non-Hispanic', 'Hispanic']}
+          options={ethnicity.options}
         />
         <FormSelect
           label="Race"
           value={state.race}
           onChange={handleChange}
-          options={[
-            'Not Answered',
-            'American Indian/Alaskan',
-            'Asian',
-            'African American/Black',
-            'Caucasian/White',
-            'More Than One Race',
-            'Native Hawaiian/Pacific Islander',
-          ]}
+          options={race.options}
         />
 
         <Button variant="primary" type="submit">

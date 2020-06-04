@@ -1,10 +1,9 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useReducer } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { db } from './Firebase';
-import FormSelect from './FormSelect';
 
 export default () => {
   const [state, update] = useReducer(
@@ -22,12 +21,6 @@ export default () => {
     }
   );
 
-  const handleChange = e => {
-    const value = e.target.value;
-    const id = e.target.id;
-    update({ [id]: value });
-  };
-
   const handleSubmit = async event => {
     event.preventDefault();
     event.stopPropagation();
@@ -40,7 +33,6 @@ export default () => {
         pointOfContact: state.pointOfContact,
         location: state.location,
         dateOfRequest: state.dateOfRequest,
-        pointOfContact: state.pointOfContact,
         receivedNarcan: state.receivedNarcan,
         notes: state.notes,
       });
