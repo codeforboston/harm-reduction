@@ -94,7 +94,7 @@ git push --set-upstream origin MY-FEATURE
 git push origin MY-FEATURE
 ```
 
-5. [Open a pull request](https://github.com/codeforboston/harm-reduction/compare) to merge your feature branch into codeforboston's master branch.
+5. [Open a pull request](https://github.com/codeforboston/harm-reduction/compare) to merge your feature branch into codeforboston's master branch. Link to the Trello card in your PR description.
 6. Respond to comments in the pull request conversation
 7. Once all checks pass and someone approves, merge the pull request!
 
