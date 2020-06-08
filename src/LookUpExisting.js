@@ -5,12 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 export default props => {
-  const { participants, selection } = props;
+  const { records, requestData, update } = props;
   const [filteredParts, setFilter] = useState([]);
   const [searchString, setSearchString] = useState('');
   const [selected, setSelected] = useState('none selected');
 
-  const partsValue = Object.values(participants);
+  const allRecords = Object.values(records);
 
   const resetLookUp = () => {
     setFilter([]);
@@ -27,21 +27,34 @@ export default props => {
       return resetLookUp();
     }
     setSearchString(e.target.value);
-    const matchParts = partsValue.filter(b =>
+    const matchedRecords = allRecords.filter(b =>
       b.firstName.includes(searchString)
     );
-    setFilter(matchParts);
+    setFilter(matchedRecords);
   };
 
+
+  const fulfillRequestData = (result) => {
+    return requestData.map(r => {
+      if(r === 'participantId'){
+        r = 'id'
+      }
+      return result[r] ? result[r] : ''
+    })
+  }
   const handleResultClick = result => {
     resetLookUp();
-    selection(result);
+    console.log(result)
+    const data = fulfillRequestData(result)
+    requestData.map((r, i) => {
+      return update({[r]: data[i]});
+    })
     setSelected(result);
-  };
+};
 
-  const singleResult = (key, result, attribute) => {
+  const displaySingleResult = (index, result, attribute) => {
     return (
-      <tr key={key}>
+      <tr key={index}>
         <td>
           <div onClick={() => handleResultClick(result)}>
             {result[attribute]}
@@ -51,13 +64,15 @@ export default props => {
     );
   };
 
-  const resultList = (results, attribute) => {
+  const displayResultList = (results, attribute) => {
     if (results.length > 0) {
-      return results.map((a, i) => singleResult(i, a, attribute));
+      return results.map((result, index) => displaySingleResult(index, result, attribute));
     } else {
       return [];
     }
   };
+
+
 
   return (
     <div>
@@ -73,7 +88,7 @@ export default props => {
             />
             <table className="table table-bordered">
               <thead></thead>
-              <tbody>{resultList(filteredParts, 'firstName')}</tbody>
+              <tbody>{displayResultList(filteredParts, 'firstName')}</tbody>
             </table>
           </Col>
           <Col xs={2}>

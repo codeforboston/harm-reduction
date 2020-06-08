@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FormSelect from './FormSelect';
 import { db } from './Firebase';
+import LookUpExisting from './LookUpExisting';
 
 export default () => {
   const [state, update] = useReducer(
@@ -57,6 +58,22 @@ export default () => {
       }),
     []
   );
+
+  const requestData = [
+    'participantId',
+    'firstName',
+    'lastName',
+    'associatedIncident',
+    'dateEngaged',
+    'pointPerson',
+    'stateOfChange',
+    'needsIdentified',
+    'narcanEnrollment',
+    'followUpDate',
+    'firstPerson',
+    'notes',
+    'status',
+  ];
 
   const handleChange = e => {
     const value = e.target.value;
@@ -143,6 +160,10 @@ export default () => {
           </p>
         </div>
         <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+          <Row>
+            <LookUpExisting records={participants} requestData={requestData} update={update} />
+          </Row>
+          <Row>updated state:{state.participantId}</Row>
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>
