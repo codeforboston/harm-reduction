@@ -1,8 +1,9 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormSelect from './FormSelect';
 import { db } from './Firebase';
+import ParticipantLookUp from './ParticipantLookUp';
 
 export const stateOfChange = {
   default: 'Not Decided',
@@ -77,6 +78,8 @@ export default () => {
       homeless: false,
     }
   );
+  
+  const [participants, setParticipants] = useState([]);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -104,6 +107,25 @@ export default () => {
     }
   };
 
+  useEffect(
+    () =>
+      db.collection('participants').onSnapshot(snapshot => {
+        const participants = [];
+        snapshot.forEach(doc => {
+          participants.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setParticipants(participants);
+      }),
+    []
+  );
+
+  const select = a => {
+    Object.entries(a).forEach(entry => update({ [entry[0]]: entry[1] }));
+  };
+
   return (
     <div>
       <div
@@ -119,6 +141,7 @@ export default () => {
           <em>{state.status}</em>
         </p>
       </div>
+      <ParticipantLookUp participants={participants} selection={select} />
       <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
