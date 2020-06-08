@@ -160,10 +160,11 @@ export default () => {
           </p>
         </div>
         <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-          <Row>
-            <LookUpExisting records={participants} requestData={requestData} update={update} />
-          </Row>
-          <Row>updated state:{state.participantId}</Row>
+          <LookUpExisting
+            records={participants}
+            requestData={requestData}
+            update={update}
+          />
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>

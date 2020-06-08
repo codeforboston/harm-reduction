@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
 export default props => {
@@ -18,7 +19,7 @@ export default props => {
     setSearchString('');
   };
 
-  const handleKeyUp = e => {
+  const handleChange = e => {
     if (e.keyCode === 27) {
       return resetLookUp();
     }
@@ -27,55 +28,32 @@ export default props => {
       return resetLookUp();
     }
     setSearchString(e.target.value);
-    const matchedRecords = allRecords.filter(b =>
-      b.firstName.includes(searchString)
-    );
-    setFilter(matchedRecords);
+console.log(allRecords)
+    const matchedRecords = allRecords.filter(b => b.firstName.includes(searchString));
+
+    setFilter(allRecords);
   };
 
-
-  const fulfillRequestData = (result) => {
+  const fulfillRequestData = result => {
     return requestData.map(r => {
-      if(r === 'participantId'){
-        r = 'id'
+      if (r === 'participantId') {
+        r = 'id';
       }
-      return result[r] ? result[r] : ''
-    })
-  }
+      return result[r] ? result[r] : '';
+    });
+  };
+
   const handleResultClick = result => {
     resetLookUp();
-    console.log(result)
-    const data = fulfillRequestData(result)
+    const data = fulfillRequestData(result);
     requestData.map((r, i) => {
-      return update({[r]: data[i]});
-    })
+      return update({ [r]: data[i] });
+    });
     setSelected(result);
-};
-
-  const displaySingleResult = (index, result, attribute) => {
-    return (
-      <tr key={index}>
-        <td>
-          <div onClick={() => handleResultClick(result)}>
-            {result[attribute]}
-          </div>
-        </td>
-      </tr>
-    );
   };
-
-  const displayResultList = (results, attribute) => {
-    if (results.length > 0) {
-      return results.map((result, index) => displaySingleResult(index, result, attribute));
-    } else {
-      return [];
-    }
-  };
-
-
 
   return (
-    <div>
+    <div data-testid={'LookUpExisting'}>
       <Form.Group controlId="search">
         <Form.Label>Search Participants</Form.Label>
         <Row>
@@ -83,13 +61,20 @@ export default props => {
             <Form.Control
               type="text"
               value={searchString}
-              onChange={handleKeyUp}
+              onChange={handleChange}
               style={{ marginRight: '1em' }}
+              autoComplete="off"
             />
-            <table className="table table-bordered">
-              <thead></thead>
-              <tbody>{displayResultList(filteredParts, 'firstName')}</tbody>
-            </table>
+            <ListGroup id="search-result-list" data-testid={'searchresults'}>
+              {filteredParts.map((p, i) => {
+                return (
+                  <ListGroup.Item
+                    key={i}
+                    onClick={() => handleResultClick(p)}
+                  >{`${p.firstName} ${p.lastName}`}</ListGroup.Item>
+                );
+              })}
+            </ListGroup>
           </Col>
           <Col xs={2}>
             <Button variant="primary" onClick={resetLookUp}>
@@ -97,17 +82,6 @@ export default props => {
             </Button>
           </Col>
         </Row>
-      </Form.Group>
-      <Form.Group controlId="result">
-        <Form.Label>
-          Selected (this will actually just populate form, but for now an extra
-          box):
-        </Form.Label>
-        <Form.Control
-          type="text"
-          value={typeof selected === 'string' ? selected : selected.firstName}
-          readOnly
-        />
       </Form.Group>
     </div>
   );
