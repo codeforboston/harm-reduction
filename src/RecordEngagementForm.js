@@ -171,10 +171,7 @@ export default () => {
           </Form.Group>
           <FormSelect
             label="Associated Incident"
-            options={[
-              'None selected',
-              ...associatedIncidents.map(a => a.id),
-            ]}
+            options={['None selected', ...associatedIncidents.map(a => a.id)]}
             onChange={handleChange}
           />
           <Form.Group>

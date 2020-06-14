@@ -6,15 +6,15 @@
 
 ## About the Project
 
-We are developing a tool for the communities of Chelsea, Revere, Saugus, and Winthrop to improve multi-sector and multi-jurisdictional coordination for outreach, response, and recovery to overdoses. We will do this by improving the efficiency of existing systems, speeding up access to critical data, and aiding in cross-jurisdictional  communication, in order to help these four communities save lives.
+We are developing a tool for the communities of Chelsea, Revere, Saugus, and Winthrop to improve multi-sector and multi-jurisdictional coordination for outreach, response, and recovery to overdoses. We will do this by improving the efficiency of existing systems, speeding up access to critical data, and aiding in cross-jurisdictional communication, in order to help these four communities save lives.
 
 ## About our Partner
 
-Our partner in the project is the City of Revere Substance Use Disorder Initiatives (SUDI) office. They are working with three other communities – Chelsea, Saugus and Winthrop – on fulfilling a newly-provided grant to scale up their existing overdose response outreach programs. The project that we create will ultimately take into account the workflows of all four communities and would be shared amongst them to meet all of their needs. 
+Our partner in the project is the City of Revere Substance Use Disorder Initiatives (SUDI) office. They are working with three other communities – Chelsea, Saugus and Winthrop – on fulfilling a newly-provided grant to scale up their existing overdose response outreach programs. The project that we create will ultimately take into account the workflows of all four communities and would be shared amongst them to meet all of their needs.
 
 The SUDI office offers support and resources as well as ongoing care in these communities via direct outreach with individuals who have experienced a nonfatal overdose.
 
-## Contact Us 
+## Contact Us
 
 [cfb-harmreduction@codeforboston.org](mailto:cfb-harmreduction@codeforboston.org)
 
@@ -23,7 +23,7 @@ The SUDI office offers support and resources as well as ongoing care in these co
 [Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing)  
 [Trello Board](https://trello.com/b/E93Cmx9n/harm-reduction)  
 [Google Meet Room](http://www.codeforboston.org/rooms/harmreduction)  
-[Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)  
+[Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)
 
 ## Getting Started
 
@@ -125,7 +125,8 @@ npm install
 ### Contributing
 
 ## Testing
-//TODO 
+
+//TODO
 
 ## CI/CD Setup
 
@@ -143,4 +144,3 @@ The deployment is configured with environment variables set in [Travis settings]
 - [Reactjs](https://facebook.github.io/react/docs/react-api.html)
 - [Bootstrap](https://react-bootstrap.github.io/)
 - [Firebase](https://firebase.google.com/docs/guides) Authentication, Firestore, and Hosting
-
