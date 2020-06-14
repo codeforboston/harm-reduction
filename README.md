@@ -68,6 +68,12 @@ git fetch upstream
 npm install
 ```
 
+6. (Optional) Enable pre-push Git hooks. This will lint and test your code when you run `git push`. It is useful to catch errors early, before code review. If you doin't feel comfortable fixing broken tests, you should skip this step. In your `.bashrc` or `.bash_profile`, add this line:
+
+```
+export RUN_HARM_REDUCTION_GIT_HOOKS=1
+```
+
 ### Running the App
 
 - In your terminal/command prompt run `npm start` to start the app. It will open automatically in a browser window.
@@ -121,8 +127,6 @@ If there is a merge conflict that cannot be resolved automatically, the output f
 ```
 npm install
 ```
-
-### Contributing
 
 ## Testing
 

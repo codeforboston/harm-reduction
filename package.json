@@ -1,5 +1,5 @@
 {
-  "name": "airtable-overdose-response",
+  "name": "harm-reduction",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,11 +33,6 @@
     "ignorePatterns": [
       "/node_modules/"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint && CI=true npm test"
-    }
   },
   "browserslist": {
     "production": [
