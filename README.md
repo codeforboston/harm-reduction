@@ -21,14 +21,15 @@ The SUDI office offers support and resources as well as ongoing care in these co
 ## Important Links
 
 [Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing)  
-[Trello Board](https://trello.com/b/E93Cmx9n/harm-reduction)  
+[Trello Sprint Board](https://trello.com/b/E93Cmx9n/harm-reduction) - This tracks work items
+[Trello Roadmap Board](https://trello.com/b/V3pZZWe1/harm-reduction-roadmap) - This holds our long-term planning info  
 [Google Meet Room](http://www.codeforboston.org/rooms/harmreduction)  
 [Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)  
 
 ## Getting Started
 
 1. Join us on [Slack](http://slack.codeforboston.org) at #harm-reduction
-2. Log in to our Trello
+2. Join our [Trello team](https://trello.com/invite/harmreduction5/4a6466181478029467025ae1cd685b1f)
 3. Request access to our Google Drive Folder (instructions [here](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit#heading=h.sve3pgxt3iph))
 4. Jump into our Google Meet Room and hang out with us!
 
