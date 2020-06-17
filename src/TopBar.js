@@ -15,11 +15,14 @@ export default () => {
         <Item to="/incidents" label="Incidents" />
         <Item to="/engagements" label="Engagements" />
         <div style={{ flexGrow: 1 }} />
+        <Button variant="dark" label="Profile" style={{ color: "black" }}  > {/* changing font color to dark doesn't work here for some reason, so I changed the button from light themed to dark themed for now */}
+          <Item to="/profile" label="Profile" style={{ color: "black" }} />
+        </Button>
         <Button variant="light" onClick={() => auth.signOut()}>
           Log Out
         </Button>
       </Row>
-    </Container>
+    </Container >
   );
 };
 
