@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+function msg() {
+    printf "\n\e[1m>>> $@\e[0m\n"
+}
+
+function quit() {
+    msg "There are some issues with your code (see above). Run 'npm run fix' to try to fix style issues automatically."
+    exit 1
+}
+
+msg "Running eslint" 
+
+eslint . || quit
+
+msg "eslint looks good"
+
+msg "Running prettier"
+
+prettier -c . || quit
+
+msg "Everything looks good!"

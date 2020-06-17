@@ -6,29 +6,34 @@
 
 ## About the Project
 
-We are developing a tool for the communities of Chelsea, Revere, Saugus, and Winthrop to improve multi-sector and multi-jurisdictional coordination for outreach, response, and recovery to overdoses. We will do this by improving the efficiency of existing systems, speeding up access to critical data, and aiding in cross-jurisdictional  communication, in order to help these four communities save lives.
+We are developing a tool for the communities of Chelsea, Revere, Saugus, and Winthrop to improve multi-sector and multi-jurisdictional coordination for outreach, response, and recovery to overdoses. We will do this by improving the efficiency of existing systems, speeding up access to critical data, and aiding in cross-jurisdictional communication, in order to help these four communities save lives.
 
 ## About our Partner
 
-Our partner in the project is the City of Revere Substance Use Disorder Initiatives (SUDI) office. They are working with three other communities – Chelsea, Saugus and Winthrop – on fulfilling a newly-provided grant to scale up their existing overdose response outreach programs. The project that we create will ultimately take into account the workflows of all four communities and would be shared amongst them to meet all of their needs. 
+Our partner in the project is the City of Revere Substance Use Disorder Initiatives (SUDI) office. They are working with three other communities – Chelsea, Saugus and Winthrop – on fulfilling a newly-provided grant to scale up their existing overdose response outreach programs. The project that we create will ultimately take into account the workflows of all four communities and would be shared amongst them to meet all of their needs.
 
 The SUDI office offers support and resources as well as ongoing care in these communities via direct outreach with individuals who have experienced a nonfatal overdose.
 
-## Contact Us 
+## Contact Us
 
 [cfb-harmreduction@codeforboston.org](mailto:cfb-harmreduction@codeforboston.org)
 
 ## Important Links
 
-[Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing)  
-[Trello Board](https://trello.com/b/E93Cmx9n/harm-reduction)  
+[Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing) 
+
+[Trello Sprint Board](https://trello.com/b/E93Cmx9n/harm-reduction) - This tracks work items
+
+[Trello Roadmap Board](https://trello.com/b/V3pZZWe1/harm-reduction-roadmap) - This holds our long-term planning info  
+
 [Google Meet Room](http://www.codeforboston.org/rooms/harmreduction)  
-[Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)  
+
+[Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)
 
 ## Getting Started
 
 1. Join us on [Slack](http://slack.codeforboston.org) at #harm-reduction
-2. Log in to our Trello
+2. Join our [Trello team](https://trello.com/invite/harmreduction5/4a6466181478029467025ae1cd685b1f)
 3. Request access to our Google Drive Folder (instructions [here](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit#heading=h.sve3pgxt3iph))
 4. Jump into our Google Meet Room and hang out with us!
 
@@ -66,6 +71,12 @@ git fetch upstream
 
 ```
 npm install
+```
+
+6. (Optional) Enable pre-push Git hooks. This will lint and test your code when you run `git push`. It is useful to catch errors early, before code review. If you doin't feel comfortable fixing broken tests, you should skip this step. In your `.bashrc` or `.bash_profile`, add this line:
+
+```
+export RUN_HARM_REDUCTION_GIT_HOOKS=1
 ```
 
 ### Running the App
@@ -122,10 +133,9 @@ If there is a merge conflict that cannot be resolved automatically, the output f
 npm install
 ```
 
-### Contributing
-
 ## Testing
-//TODO 
+
+//TODO
 
 ## CI/CD Setup
 
@@ -143,4 +153,3 @@ The deployment is configured with environment variables set in [Travis settings]
 - [Reactjs](https://facebook.github.io/react/docs/react-api.html)
 - [Bootstrap](https://react-bootstrap.github.io/)
 - [Firebase](https://firebase.google.com/docs/guides) Authentication, Firestore, and Hosting
-

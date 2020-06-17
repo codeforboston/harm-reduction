@@ -5,6 +5,7 @@ import Incidents from './Incidents';
 import Participants from './Participants';
 import Engagements from './Engagements';
 import Home from './Home';
+import Profile from './Profile';
 import Logout from './Logout';
 
 export default () => (
@@ -18,6 +19,9 @@ export default () => (
       </Route>
       <Route path="/engagements">
         <Engagements />
+      </Route>
+      <Route path="/profile">
+        <Profile />
       </Route>
       <Route path="/logout">
         <Logout />
