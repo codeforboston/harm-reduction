@@ -44,7 +44,7 @@ export default () => {
           marginBottom: '2em',
         }}
       >
-        <h2 style={{ flex: 1 }}>Add a new user</h2>
+        <h2 style={{ flex: 1 }}>Your Profile</h2>
         <p style={{ flex: 1, fontWeight: '400', fontSize: '1em' }}>
           <em>{state.status}</em>
         </p>
@@ -70,7 +70,7 @@ export default () => {
 
 
         <Button variant="primary" type="submit">
-          Record User
+          Update Profile
         </Button>
       </Form>
     </div>

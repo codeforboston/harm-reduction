@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './Firebase';
 
+var frankDocRef = db.collection("users").doc("frank");
+frankDocRef.set({
+  firstName: "Frank",
+  lastName: 12
+});
+
 const column = (name, getter) => ({ name, getter });
 const columns = [
-  column('ID', row => row.id),
   column('First Name', row => row.firstName),
   column('Last Name', row => row.lastName),
 ];
@@ -40,11 +45,11 @@ export default () => {
         </tr>
       </thead>
       <tbody>
-        {users.map(users => (
-          <tr key={users.id}>
-            {/*             {columns.map((column, index) => (
+        {users.map(user => (
+          <tr key={user.id}>
+            {columns.map((column, index) => (
               <td key={index}>{column.getter(user)}</td>
-            ))} */}
+            ))}
           </tr>
         ))}
       </tbody>
