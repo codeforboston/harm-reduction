@@ -1,8 +1,9 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormSelect from './FormSelect';
 import { db } from './Firebase';
+import { useAuthState } from './Auth';
 
 export default () => {
   const [state, update] = useReducer(
@@ -12,6 +13,19 @@ export default () => {
       lastName: '',
     }
   );
+
+  // Alex updates
+  /*   const { user } = useAuthState()
+    const userDoc = db.collection('users').doc(user.uid)
+  
+    useEffect(() => {
+      const loadUser = async () => {
+        const { firstName, lastName } = await userDoc.read();
+        update({ firstName, lastName });
+      }
+      loadUser();
+    }, []) */
+  // End Alex updates
 
   const handleChange = e => {
     const value = e.target.value;
@@ -24,11 +38,8 @@ export default () => {
     event.stopPropagation();
 
     try {
-      await db.collection('participants').add({
-        firstName: state.firstName,
-        lastName: state.lastName,
-      });
-      update({ status: 'Submitted!' });
+      // await userDoc.update({ firstName, lastName })
+      update({ status: 'Profile Updated!' });
     } catch (e) {
       update({ status: 'Error! ' + e });
     }
