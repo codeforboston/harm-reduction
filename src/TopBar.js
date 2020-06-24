@@ -23,8 +23,8 @@ export default () => {
         <Item to="/incidents" label="Incidents" />
         <Item to="/engagements" label="Engagements" />
         <div style={{ flexGrow: 1 }} />
-        <Button variant="dark" label="Profile" style={{ color: "black" }} onClick={handleClick} > {/* changing font color to dark doesn't work here for some reason, so I changed the button from light themed to dark themed for now */}
-          <Item to="/profile" label="Profile" style={{ color: "black" }} />
+        <Button className="profile-button" variant="dark" label="Profile" onClick={handleClick} > {/* changing font color to dark doesn't work here for some reason, so I changed the button from light themed to dark themed for now */}
+          Profile
         </Button>
         <Button variant="light" onClick={() => auth.signOut()}>
           Log Out

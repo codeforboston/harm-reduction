@@ -1,7 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useMemo } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import FormSelect from './FormSelect';
 import { db } from './Firebase';
 import { useAuthState } from './Auth';
 
@@ -15,34 +14,30 @@ export default () => {
   );
 
   const { user } = useAuthState()
-  const userDoc = db.collection('users').doc(user.uid)
+  const userDoc = useMemo(() => db.collection('users').doc(user.uid), [user.uid]);
 
   useEffect(() => {
     const loadUser = async () => {
-      const { firstName, lastName } = await userDoc.get();
+      const { firstName, lastName } = (await userDoc.get()).data() || {};
       update({ firstName, lastName });
     }
     loadUser();
-  }, [])
-
-  const handleChange = e => {
-    const value = e.target.value;
-    const id = e.target.id;
-    update({ [id]: value });
-  };
+  }, [userDoc])
 
   const handleSubmit = async event => {
     event.preventDefault();
     event.stopPropagation();
 
     try {
-      await userDoc.set({ firstname: state.firstName, lastName: state.lastName })
+      await userDoc.set({ firstName: state.firstName, lastName: state.lastName })
       update({ status: 'Profile Updated!' });
+
     } catch (e) {
       update({ status: 'Error! ' + e });
     }
   };
 
+  console.log('first and last', state.firstName, state.lastName)
   return (
     <div>
       <div
