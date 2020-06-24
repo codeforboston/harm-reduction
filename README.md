@@ -22,6 +22,8 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 [Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing) 
 
+[Trello Team Invitation](https://trello.com/invite/harmreduction5/a5e5db4b0884d3571a19fbc34a01bd85) - This holds all of our trello boards and will allow you access to the boards below
+
 [Trello Sprint Board](https://trello.com/b/E93Cmx9n/harm-reduction) - This tracks work items
 
 [Trello Roadmap Board](https://trello.com/b/V3pZZWe1/harm-reduction-roadmap) - This holds our long-term planning info  
