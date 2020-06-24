@@ -14,18 +14,16 @@ export default () => {
     }
   );
 
-  // Alex updates
-  /*   const { user } = useAuthState()
-    const userDoc = db.collection('users').doc(user.uid)
-  
-    useEffect(() => {
-      const loadUser = async () => {
-        const { firstName, lastName } = await userDoc.read();
-        update({ firstName, lastName });
-      }
-      loadUser();
-    }, []) */
-  // End Alex updates
+  const { user } = useAuthState()
+  const userDoc = db.collection('users').doc(user.uid)
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const { firstName, lastName } = await userDoc.get();
+      update({ firstName, lastName });
+    }
+    loadUser();
+  }, [])
 
   const handleChange = e => {
     const value = e.target.value;
@@ -38,7 +36,7 @@ export default () => {
     event.stopPropagation();
 
     try {
-      // await userDoc.update({ firstName, lastName })
+      await userDoc.set({ firstname: state.firstName, lastName: state.lastName })
       update({ status: 'Profile Updated!' });
     } catch (e) {
       update({ status: 'Error! ' + e });
@@ -65,6 +63,7 @@ export default () => {
           <Form.Label>First Name</Form.Label>
           <Form.Control
             required
+            type="text"
             value={state.firstName}
             onChange={e => update({ firstName: e.target.value })}
           />
