@@ -1,0 +1,18 @@
+.table-container {
+  width: 100%;
+}
+
+.switch {
+  margin-bottom: 1em;
+}
+
+.react-bootstrap-table table thead {
+  font-size: 1rem;
+}
+
+.react-bootstrap-table table tbody {
+  font-size: 0.8rem;
+}
+.react-bootstrap-table table td {
+  overflow-x: hidden;
+}
