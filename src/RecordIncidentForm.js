@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { db } from './Firebase';
+import { addIncident, getParticipantById } from './FirebaseIncidentForm';
 
 export default () => {
   const [state, update] = useReducer(
@@ -25,20 +25,40 @@ export default () => {
     event.preventDefault();
     event.stopPropagation();
 
+    const incident = {
+      participantId: state.participantId,
+      firstName: state.firstName,
+      lastName: state.lastName,
+      pointOfContact: state.pointOfContact,
+      location: state.location,
+      dateOfRequest: state.dateOfRequest,
+      receivedNarcan: state.receivedNarcan,
+      notes: state.notes,
+    };
+
+    const addStatus = await addIncident(incident);
+
+    update({ status: addStatus });
+  };
+
+  const handleParticipantId = async e => {
+    const id = e.target.value;
+    update({ participantId: id });
     try {
-      await db.collection('incidents').add({
-        participantId: state.participantId,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        pointOfContact: state.pointOfContact,
-        location: state.location,
-        dateOfRequest: state.dateOfRequest,
-        receivedNarcan: state.receivedNarcan,
-        notes: state.notes,
+      const participant = await getParticipantById(id);
+      console.log('id', participant);
+      update({
+        participantId: participant.id,
+        firstName: participant.firstName,
+        lastName: participant.lastName,
+        pointOfContact: participant.pointOfContact,
+        // location: participant.location,
+        dateOfRequest: participant.dateOfRequest,
+        receivedNarcan: participant.receivedNarcan,
+        notes: participant.notes,
       });
-      update({ status: 'Submitted!' });
-    } catch (e) {
-      update({ status: 'Error! ' + e });
+    } catch (err) {
+      console.log('no id', err);
     }
   };
 
@@ -89,7 +109,7 @@ export default () => {
               required
               value={state.participantId}
               type="text"
-              onChange={e => update({ participantId: e.target.value })}
+              onChange={handleParticipantId}
             />
           </Form.Group>
           <Row>
