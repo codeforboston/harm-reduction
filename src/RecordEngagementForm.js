@@ -1,10 +1,9 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FormSelect from './FormSelect';
-import { db } from './Firebase';
 import {
   addEngagement,
   getParticipantById,
@@ -32,59 +31,27 @@ export default () => {
   );
   const [incidents, setIncidents] = useState([]);
   const [participant, setParticipant] = useState([]);
-{
-  // useEffect(
-  //   () => async () => {
-  //     const participant = await getParticipantById(
-  //       state.participantId
-  //     ).then(doc => doc.data());
-  //     setParticipant(participant);
-  //     console.log('participant inside effect', participant);
-  //     update({ firstName: participant.firstName });
-  //     update({ lastName: participant.lastName });
-  //   },
-  //   []
-  // ); 
-  
-  // useEffect(
-  //   () => async () => {
-  //     const getIncidents = await getIncidentsByParticipantId(
-  //       state.participantId
-  //     );
-  //     setIncidents(getIncidents);
-  //     console.log('incidents', getIncidents, incidents);
-  //   },
-  //   []
-  // );
-}
 
-  const handleParticipantUpdate = async (id) => {
-    try {
-    const participant = await getParticipantById(
-      id
-    ).then(doc => doc.data());
+  const handleParticipantUpdate = async id => {
+    update({participantId: id});
+    const participant = id ? await getParticipantById(id) : {};
     setParticipant(participant);
-    getIncidents(id)
-    update({ firstName: participant.firstName });
-    update({ lastName: participant.lastName });
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
+    await getIncidents(id);
+    update({
+      firstName: participant.firstName || '',
+      lastName: participant.lastName || '',
+    });
+  };
 
-
-  const getIncidents = async(id)=> {
-    const incidentsById = await getIncidentsByParticipantId ( id );
+  const getIncidents = async id => {
+    const incidentsById = await getIncidentsByParticipantId(id);
     setIncidents(incidentsById);
-    console.log('incidents', incidents)
-  }
-  
+  };
+
   const handleChange = e => {
     const value = e.target.value;
     const id = e.target.id;
     update({ [id]: value });
-    console.log('on form', id, value, incidents);
   };
 
   const handleSubmit = async event => {
@@ -120,6 +87,7 @@ export default () => {
           borderRadius: '5px',
           padding: '1em',
         }}
+        key={incident.id}
       >
         <p>Incident Id: {incident.id}</p>
         <p>Date of Incident: {incident.dateOfRequest}</p>
@@ -128,12 +96,6 @@ export default () => {
         <p>ParticipantId: {incident.participantId}</p>
       </Form.Group>
     );
-  };
-
-  const fillParticipantInfo = e => {
-    // update({ participantId: e.target.value });
-    update({ firstName: participant.firstName });
-    update({ lastName: participant.lastName });
   };
 
   return (
@@ -163,10 +125,7 @@ export default () => {
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control
-                value={state.firstName}
-                onChange={handleChange}
-              />
+              <Form.Control value={state.firstName} onChange={handleChange} />
             </Form.Group>
             <Form.Group as={Col} controlId="lastName">
               <Form.Label>Last Name</Form.Label>
@@ -174,14 +133,14 @@ export default () => {
                 value={state.lastName}
                 type="text"
                 onChange={handleChange}
-                />
+              />
             </Form.Group>
           </Row>
           <Form.Group controlId="participantId">
             <Form.Label>Participant ID</Form.Label>
             <Form.Control
               required
-              value={participant.id}
+              value={state.participantId}
               type="text"
               onChange={e => handleParticipantUpdate(e.target.value)}
             />
@@ -191,7 +150,9 @@ export default () => {
             options={['None selected', ...incidents.map(a => a.id)]}
             onChange={handleChange}
           />
-          {displayIncident(state.associatedIncident)}
+          {incidents
+            .filter(incident => incident.id === state.associatedIncident)
+            .map(incident => displayIncident(incident))}
           <Form.Check
             id="narcanEnrollment"
             style={{ margin: '20px 0 10px 0' }}

@@ -27,7 +27,7 @@ export const getParticipantById = async participantId => {
     .collection('participants')
     .doc(participantId)
     .get();
-  return participant;
+  return {id: participant.id, ...participant.data()};
 };
 
 export const getIncidentsByParticipantId = async participantId => {

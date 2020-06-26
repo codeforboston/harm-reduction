@@ -44,22 +44,11 @@ export default () => {
   const handleParticipantId = async e => {
     const id = e.target.value;
     update({ participantId: id });
-    try {
-      const participant = await getParticipantById(id);
-      console.log('id', participant);
-      update({
-        participantId: participant.id,
-        firstName: participant.firstName,
-        lastName: participant.lastName,
-        pointOfContact: participant.pointOfContact,
-        // location: participant.location,
-        dateOfRequest: participant.dateOfRequest,
-        receivedNarcan: participant.receivedNarcan,
-        notes: participant.notes,
-      });
-    } catch (err) {
-      console.log('no id', err);
-    }
+    const participant = id ? await getParticipantById(id) : {};
+    update({
+      firstName: participant.firstName || '',
+      lastName: participant.lastName || '',
+    });
   };
 
   return (
