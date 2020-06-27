@@ -9,11 +9,15 @@ export const tableTypes = [
   { name: 'Bootstrap', title: 'Sortable Bootstrap' },
   { name: 'MDB', title: 'Material Design' },
   { name: 'MUI', title: 'Material UI' },
+  { name: 'Material', title: 'MUI-based expansion' },
 ];
 
 const TableSwitch = ({ currentTable, updateTableType }) => {
   return (
-    <ButtonToolbar className="justify-content-between">
+    <ButtonToolbar className="justify-content-start">
+      <h5 style={{ marginRight: '1em' }} className="table-select">
+        Table Type:
+      </h5>
       <ToggleButtonGroup
         type="radio"
         name="tableType"
@@ -32,7 +36,7 @@ const TableSwitch = ({ currentTable, updateTableType }) => {
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
-      <h5 className="current-value">
+      <h5 style={{ marginLeft: '3em' }} className="current-value">
         Current: <Badge variant="info">{tableTypes[currentTable].name}</Badge>
       </h5>
     </ButtonToolbar>
