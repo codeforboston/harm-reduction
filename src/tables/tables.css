@@ -6,6 +6,21 @@
   margin-bottom: 1em;
 }
 
+.table-header {
+  font-size: 1.3em;
+  /* width: 100%; */
+  border: thin ridge #999;
+  border-radius: 0.3em;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+}
+
+.record-count {
+  font-size: 0.8em;
+  padding-left: 6em;
+  color: #006;
+}
+
 .react-bootstrap-table table thead {
   font-size: 1rem;
 }
