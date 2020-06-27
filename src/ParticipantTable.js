@@ -4,19 +4,18 @@ import TableContainer from './tables/TableContainer';
 
 const participantMeta = [
   {
-    fieldName: 'id',
-    labelName: 'ID',
-    isKey: true,
+    name: 'id',
+    label: 'ID',
     sortable: false,
     display: false,
   },
-  { fieldName: 'firstName', labelName: 'First Name' },
-  { fieldName: 'lastName', labelName: 'Last Name' },
-  { fieldName: 'ethnicity', labelName: 'Ethnicity' },
-  { fieldName: 'stateOfChange', labelName: 'State of Change' },
-  { fieldName: 'newOrExisting', labelName: 'New or Existing' },
-  { fieldName: 'age', labelName: 'Age' },
-  { fieldName: 'gender', labelName: 'Gender' },
+  { name: 'firstName', label: 'First Name' },
+  { name: 'lastName', label: 'Last Name' },
+  { name: 'ethnicity', label: 'Ethnicity' },
+  { name: 'stateOfChange', label: 'State of Change' },
+  { name: 'newOrExisting', label: 'New or Existing' },
+  { name: 'age', label: 'Age' },
+  { name: 'gender', label: 'Gender' },
 ];
 
 export default () => {
@@ -37,5 +36,11 @@ export default () => {
     []
   );
 
-  return <TableContainer fields={participantMeta} rows={participants} />;
+  return (
+    <TableContainer
+      columns={participantMeta}
+      rows={participants}
+      collectionName="participant"
+    />
+  );
 };
