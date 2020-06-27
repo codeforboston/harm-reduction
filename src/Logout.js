@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { auth } from './Firebase';
+import { auth } from './Database/Firebase';
 
 export default () => {
   useEffect(() => {

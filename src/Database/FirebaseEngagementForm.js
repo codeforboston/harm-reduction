@@ -27,7 +27,7 @@ export const getParticipantById = async participantId => {
     .collection('participants')
     .doc(participantId)
     .get();
-  return {id: participant.id, ...participant.data()};
+  return { id: participant.id, ...participant.data() };
 };
 
 export const getIncidentsByParticipantId = async participantId => {
@@ -36,8 +36,20 @@ export const getIncidentsByParticipantId = async participantId => {
     .where('participantId', '==', participantId);
   const incidentData = await incidents.get().then(ins =>
     ins.docs.map(doc => {
-        return {'id': doc.id, ...doc.data()} 
+      return { id: doc.id, ...doc.data() };
     })
   );
   return incidentData;
+};
+
+export const getEngagementsByParticipantId = async participantId => {
+  const engagements = db
+    .collection('engagements')
+    .where('participantId', '==', participantId);
+  const engagementData = await engagements.get().then(engagements =>
+    engagements.docs.map(doc => {
+      return { id: doc.id, ...doc.data() };
+    })
+  );
+  return engagementData;
 };

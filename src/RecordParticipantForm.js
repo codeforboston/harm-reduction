@@ -9,8 +9,8 @@ import {
   gender,
   ethnicity,
   race,
-  addParticipant,
-} from './FirebaseParticipantForm';
+} from './Options';
+import { addParticipant } from './Database';
 
 export default () => {
   const [state, update] = useReducer(
@@ -40,7 +40,7 @@ export default () => {
   const handleSubmit = async event => {
     event.preventDefault();
     event.stopPropagation();
-    
+
     const participant = {
       firstName: state.firstName,
       lastName: state.lastName,

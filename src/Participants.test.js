@@ -2,7 +2,7 @@ import { render, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { db } from './Firebase';
+import { db } from './Database/Firebase';
 import Participants from './Participants';
 import {
   age,

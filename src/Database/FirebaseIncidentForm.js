@@ -17,11 +17,3 @@ export const addIncident = async (incident) => {
         return 'Error! ' + e ;
       }
 }
-
-export const getParticipantById = async participantId => {
-    const participant = await db
-      .collection('participants')
-      .doc(participantId)
-      .get();
-    return {id: participant.id, ...participant.data()};
-  };

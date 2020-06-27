@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { auth } from './Firebase';
+import { auth } from './Database/Firebase';
 import { useHistory, useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
