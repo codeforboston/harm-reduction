@@ -1,39 +1,38 @@
 import React from 'react';
-import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from 'mdbreact';
+import { MDBDataTableV5, MDBBtn } from 'mdbreact';
 
 /**
  * format metadata for current table
  */
-const convertColumn = ({
-  fieldName,
-  labelName,
-  isKey = false,
-  sortable = true,
-  display = true,
-}) => ({
-  field: fieldName,
-  label: labelName,
-  sort: sortable ? 'asc' : false,
+const convertColumn = ({ name, label, sortable = true, display = true }) => ({
+  field: name,
+  label: name === 'id' ? 'Lookup' : label,
+  sort: sortable ? 'asc' : 'disabled',
 });
 
-const transformFields = fields => fields.map(field => convertColumn(field));
-
-const idFieldBtn = row => {
+const idFieldBtn = (row, viewUrl) => {
   const { id, ...rest } = row;
   const btn = (
-    <MDBBtn color="default" outline size="sm" data-id={id}>
-      Lookup
+    <MDBBtn color="default" outline size="sm" href={viewUrl(id)}>
+      View
     </MDBBtn>
   );
   return { id: btn, ...rest };
 };
 
-export default ({ fields, rows }) => {
-  const btnRows = rows.map(row => idFieldBtn(row));
+export default props => {
+  const { columns, rows, collectionName } = props;
+  const fields = columns.map(col => convertColumn(col));
+  const viewUrl = id => `/${collectionName}/show/${id}`;
+  const btnRows = rows.map(row => idFieldBtn(row, viewUrl));
+
   return (
-    <MDBTable autoWidth striped bordered small responsive btn>
-      <MDBTableHead columns={transformFields(fields)} />
-      <MDBTableBody rows={btnRows} />
-    </MDBTable>
+    <MDBDataTableV5
+      hover
+      entriesOptions={[5, 15, 25]}
+      entries={15}
+      pagesAmount={4}
+      data={{ columns: fields, rows: btnRows }}
+    />
   );
 };

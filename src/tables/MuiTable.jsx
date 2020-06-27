@@ -9,34 +9,18 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Switch from '@material-ui/core/Switch';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import FilterListIcon from '@material-ui/icons/FilterList';
+import Button from '@material-ui/core/Button';
 
 /**
  * format metadata for current table
  */
-const convertColumn = ({
-  fieldName,
-  labelName,
-  isKey = false,
-  sortable = true,
-  display = true,
-}) => ({
-  id: fieldName,
+const convertColumn = ({ name, label, sortable = true, display = true }) => ({
+  id: name,
   numeric: false,
   disablePadding: false,
-  label: labelName,
+  label: label,
 });
-
-const transformFields = fields => fields.map(field => convertColumn(field));
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -65,8 +49,8 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { fields, classes, order, orderBy, onRequestSort } = props;
-  const columns = transformFields(fields);
+  const { columns, classes, order, orderBy, onRequestSort } = props;
+  const fields = columns.map(col => convertColumn(col));
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
@@ -74,7 +58,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {columns.map((headCell, index) => (
+        {fields.map((headCell, index) => (
           <TableCell
             key={index}
             align={headCell.numeric ? 'right' : 'left'}
@@ -86,7 +70,7 @@ function EnhancedTableHead(props) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <strong>{headCell.label}</strong>
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -101,7 +85,7 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-  fields: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
   classes: PropTypes.array,
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
@@ -133,12 +117,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default props => {
-  const { fields, rows } = props;
+  const { columns, rows, collectionName } = props;
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('lastName');
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -155,6 +139,28 @@ export default props => {
     setPage(0);
   };
 
+  const cellContent = (fieldName, value) => {
+    if (fieldName === 'id') {
+      const url = `/${collectionName}/show/${value}`;
+      return (
+        <Button variant="contained" color="primary" href={url}>
+          View
+        </Button>
+      );
+    } else if (fieldName.endsWith('Id')) {
+      // lookup for other type of Id
+      const collName = fieldName.substring(0, fieldName.length - 2);
+      const url = `/${collName}/show/${value}`;
+      return (
+        <Button variant="contained" color="secondary" href={url}>
+          View
+        </Button>
+      );
+    } else {
+      return value;
+    }
+  };
+
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -169,7 +175,7 @@ export default props => {
             aria-label="enhanced table"
           >
             <EnhancedTableHead
-              fields={fields}
+              columns={columns}
               classes={classes}
               order={order}
               orderBy={orderBy}
@@ -178,17 +184,15 @@ export default props => {
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, rowIndex) => {
-                  return (
-                    <TableRow hover tabIndex={-1} key={rowIndex}>
-                      {fields.map((field, fieldIndex) => (
-                        <TableCell key={fieldIndex}>
-                          {row[field.fieldName]}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  );
-                })}
+                .map((row, rowIndex) => (
+                  <TableRow hover tabIndex={-1} key={rowIndex}>
+                    {columns.map((col, colIndex) => (
+                      <TableCell key={colIndex}>
+                        {cellContent(col.name, row[col.name])}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 33 * emptyRows }}>
                   <TableCell colSpan={6} />

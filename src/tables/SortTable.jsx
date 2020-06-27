@@ -1,4 +1,5 @@
 import React from 'react';
+// import Button from 'react-bootstrap/Button';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
@@ -11,29 +12,41 @@ import './tables.css';
  * [{ dataField: 'id', text: 'ID', sort: bool }]
  */
 const convertColumn = ({
-  fieldName,
-  labelName,
-  isKey = false,
+  name,
+  label,
+  type = 'string',
   sortable = true,
   display = true,
 }) => ({
-  dataField: fieldName,
-  text: labelName,
+  dataField: name,
+  text: label,
   sort: sortable,
   hidden: !display,
 });
 
-const transformFields = fields => fields.map(field => convertColumn(field));
+// const linkButton = (column, rows) => {
+//   if (column.type === 'link') {
+//     return rows.map(row => {
+//       const field = row[column.name];
+//       const url = column.link(field);
+//       row[column.name] = (
+//         <Button href={url} variant="primary">
+//           View
+//         </Button>
+//       );
+//       return row;
+//     });
+//   }
+//   return rows;
+// };
 
-const findKeyField = fields => fields.find(field => field.isKey).fieldName;
-
-// table has problems with long fields
-const SortTable = ({ fields, rows }) => {
-  const columns = transformFields(fields);
+// !underlying component uses deprecated methods!
+export default ({ columns, rows }) => {
+  const fields = columns.map(col => convertColumn(col));
   return (
     <BootstrapTable
-      keyField={findKeyField(fields)}
-      columns={columns}
+      keyField="id"
+      columns={fields}
       data={rows}
       pagination={paginationFactory()}
       striped
@@ -45,5 +58,3 @@ const SortTable = ({ fields, rows }) => {
     />
   );
 };
-
-export default SortTable;
