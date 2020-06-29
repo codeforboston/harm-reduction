@@ -3,12 +3,19 @@ import { db } from './Firebase';
 import TableContainer from './tables/TableContainer';
 
 const incidentMeta = [
-  { name: 'id', label: 'ID', type: 'link', link: id => `/incident/show/${id}` },
+  {
+    name: 'id',
+    label: 'View',
+    display: false,
+    sortable: false,
+    link: id => `/incident/view/${id}`,
+  },
   {
     name: 'participantId',
     label: 'Participant',
-    type: 'link',
-    link: id => `/participant/show/${id}`,
+    display: false,
+    sortable: false,
+    link: id => `/participant/view/${id}`,
   },
   { name: 'firstName', label: 'First Name' },
   { name: 'lastName', label: 'Last Name' },
@@ -40,9 +47,9 @@ export default () => {
 
   return (
     <TableContainer
-      collectionName="incident"
       columns={incidentMeta}
       rows={incidents}
+      collectionName="incident"
     />
   );
 };

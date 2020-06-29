@@ -5,9 +5,10 @@ import TableContainer from './tables/TableContainer';
 const participantMeta = [
   {
     name: 'id',
-    label: 'ID',
+    label: 'View',
     sortable: false,
     display: false,
+    link: id => `/participant/view/${id}`,
   },
   { name: 'firstName', label: 'First Name' },
   { name: 'lastName', label: 'Last Name' },

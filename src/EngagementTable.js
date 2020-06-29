@@ -3,16 +3,29 @@ import { db } from './Firebase';
 import TableContainer from './tables/TableContainer';
 
 const engagementMeta = [
-  { name: 'id', label: 'ID', display: false },
+  {
+    name: 'id',
+    label: 'View',
+    display: false,
+    sortable: false,
+    link: id => `/engagement/view/${id}`,
+  },
   {
     name: 'participantId',
     label: 'Participant',
     display: false,
     sortable: false,
+    link: id => `/participant/view/${id}`,
   },
   { name: 'firstName', label: 'First Name' },
   { name: 'lastName', label: 'Last Name' },
-  { name: 'associatedIncident', label: 'Associated Incident' },
+  {
+    name: 'associatedIncident',
+    label: 'Associated Incident',
+    display: false,
+    sortable: false,
+    link: id => `/incident/view/${id}`,
+  },
   { name: 'dateEngaged', label: 'Date Engaged', type: 'date' },
   { name: 'pointPerson', label: 'Point Person' },
   { name: 'stateOfChange', label: 'State of Change' },
