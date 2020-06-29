@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './Firebase';
-import TableContainer from './tables/TableContainer';
+import DataTable from './DataTable';
 
-const engagementMeta = [
+const columns = [
   {
-    name: 'id',
-    label: 'View',
-    display: false,
-    sortable: false,
-    link: id => `/engagement/view/${id}`,
+    field: 'id',
+    title: 'View',
+    hidden: true,
+    sorting: false,
   },
   {
-    name: 'participantId',
-    label: 'Participant',
-    display: false,
-    sortable: false,
-    link: id => `/participant/view/${id}`,
+    field: 'participantId',
+    title: 'Participant',
+    hidden: true,
+    detail: true,
   },
-  { name: 'firstName', label: 'First Name' },
-  { name: 'lastName', label: 'Last Name' },
+  { field: 'firstName', title: 'First Name', searchable: true },
+  { field: 'lastName', title: 'Last Name', searchable: true },
   {
-    name: 'associatedIncident',
-    label: 'Associated Incident',
-    display: false,
-    sortable: false,
-    link: id => `/incident/view/${id}`,
+    field: 'associatedIncident',
+    title: 'Associated Incident',
+    hidden: true,
+    detail: true,
   },
-  { name: 'dateEngaged', label: 'Date Engaged', type: 'date' },
-  { name: 'pointPerson', label: 'Point Person' },
-  { name: 'stateOfChange', label: 'State of Change' },
-  { name: 'needsIdentified', label: 'Needs Identified' },
-  { name: 'narcanEnrollment', label: 'Narcan Enrollment', type: 'boolean' },
-  { name: 'followUpDate', label: 'Follow Up Date', type: 'date' },
-  { name: 'firstPerson', label: 'First Person' },
-  { name: 'notes', label: 'Notes' },
+  { field: 'dateEngaged', title: 'Date Engaged', type: 'date' },
+  { field: 'pointPerson', title: 'Point Person' },
+  { field: 'stateOfChange', title: 'State of Change' },
+  { field: 'needsIdentified', title: 'Needs Identified' },
+  { field: 'narcanEnrollment', title: 'Narcan Enrollment', type: 'boolean' },
+  { field: 'followUpDate', title: 'Follow Up Date', type: 'date' },
+  { field: 'firstPerson', title: 'First Person', type: 'boolean' },
+  { field: 'notes', title: 'Notes', hidden: true, detail: true },
 ];
 
 export default () => {
@@ -55,8 +52,8 @@ export default () => {
   );
 
   return (
-    <TableContainer
-      columns={engagementMeta}
+    <DataTable
+      columns={columns}
       rows={engagements}
       collectionName="engagement"
     />
