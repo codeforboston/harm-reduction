@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './Firebase';
-import TableContainer from './tables/TableContainer';
+import DataTable from './DataTable';
 
-const participantMeta = [
+const columns = [
   {
-    name: 'id',
-    label: 'View',
-    sortable: false,
-    display: false,
-    link: id => `/participant/view/${id}`,
+    field: 'id',
+    title: 'Participant',
+    sorting: false,
+    hidden: true,
   },
-  { name: 'firstName', label: 'First Name' },
-  { name: 'lastName', label: 'Last Name' },
-  { name: 'ethnicity', label: 'Ethnicity' },
-  { name: 'stateOfChange', label: 'State of Change' },
-  { name: 'newOrExisting', label: 'New or Existing' },
-  { name: 'age', label: 'Age' },
-  { name: 'gender', label: 'Gender' },
+  { field: 'firstName', title: 'First Name', searchable: true },
+  { field: 'lastName', title: 'Last Name', searchable: true },
+  { field: 'ethnicity', title: 'Ethnicity' },
+  { field: 'stateOfChange', title: 'State of Change' },
+  { field: 'newOrExisting', title: 'New or Existing' },
+  { field: 'age', title: 'Age' },
+  { field: 'gender', title: 'Gender' },
 ];
 
 export default () => {
@@ -38,8 +37,8 @@ export default () => {
   );
 
   return (
-    <TableContainer
-      columns={participantMeta}
+    <DataTable
+      columns={columns}
       rows={participants}
       collectionName="participant"
     />
