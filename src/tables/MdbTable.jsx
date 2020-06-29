@@ -1,30 +1,33 @@
 import React from 'react';
-import { MDBDataTableV5, MDBBtn } from 'mdbreact';
+import { MDBDataTableV5 } from 'mdbreact';
 
 /**
  * format metadata for current table
  */
-const convertColumn = ({ name, label, sortable = true, display = true }) => ({
+const convertColumn = ({ name, label, sortable = true }) => ({
   field: name,
-  label: name === 'id' ? 'Lookup' : label,
+  label: name === 'id' ? 'ID' : label,
   sort: sortable ? 'asc' : 'disabled',
 });
 
-const idFieldBtn = (row, viewUrl) => {
-  const { id, ...rest } = row;
-  const btn = (
-    <MDBBtn color="default" outline size="sm" href={viewUrl(id)}>
-      View
-    </MDBBtn>
-  );
-  return { id: btn, ...rest };
-};
-
 export default props => {
-  const { columns, rows, collectionName } = props;
+  const { columns, rows } = props;
   const fields = columns.map(col => convertColumn(col));
-  const viewUrl = id => `/${collectionName}/show/${id}`;
-  const btnRows = rows.map(row => idFieldBtn(row, viewUrl));
+
+  // const btnRows = rows.map(row => {
+  //   return columns.map(column => {
+  //     const val = row[column.name];
+  //     if (column.display) {
+  //       return val;
+  //     } else {
+  //       return (
+  //         <MDBBtn color="blue-grey" outline size="sm" href={column.link(val)}>
+  //           View
+  //         </MDBBtn>
+  //       );
+  //     }
+  //   });
+  // });
 
   return (
     <MDBDataTableV5
@@ -32,7 +35,7 @@ export default props => {
       entriesOptions={[5, 15, 25]}
       entries={15}
       pagesAmount={4}
-      data={{ columns: fields, rows: btnRows }}
+      data={{ columns: fields, rows: rows }}
     />
   );
 };

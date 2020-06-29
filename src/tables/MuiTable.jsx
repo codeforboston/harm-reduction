@@ -141,7 +141,7 @@ export default props => {
 
   const cellContent = (fieldName, value) => {
     if (fieldName === 'id') {
-      const url = `/${collectionName}/show/${value}`;
+      const url = `/${collectionName}/view/${value}`;
       return (
         <Button variant="contained" color="primary" href={url}>
           View
@@ -150,7 +150,7 @@ export default props => {
     } else if (fieldName.endsWith('Id')) {
       // lookup for other type of Id
       const collName = fieldName.substring(0, fieldName.length - 2);
-      const url = `/${collName}/show/${value}`;
+      const url = `/${collName}/view/${value}`;
       return (
         <Button variant="contained" color="secondary" href={url}>
           View

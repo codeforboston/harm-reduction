@@ -60,7 +60,7 @@ export default props => {
           icon: tableIcons.View,
           tooltip: `View ${collectionName}`,
           onClick: (event, rowData) => {
-            const url = `/${collectionName}/show/${rowData.id}`;
+            const url = `/${collectionName}/view/${rowData.id}`;
             window.location.history.push(url);
           },
         },
