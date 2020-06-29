@@ -27,7 +27,7 @@ export default () => (
       <Route path="/participant/all">
         <ParticipantTable />
       </Route>
-      <Route path="/participant/show/:id">
+      <Route path="/participant/view/:id">
         <RecordParticipantForm action="show" />
       </Route>
       <Route path="/participant/update/:id">
@@ -43,7 +43,7 @@ export default () => (
       <Route path="/incident/all">
         <IncidentTable />
       </Route>
-      <Route path="incident/show/:id">
+      <Route path="incident/view/:id">
         <RecordIncidentForm action="show" />
       </Route>
       <Route path="/incident/update/:id">
@@ -59,7 +59,7 @@ export default () => (
       <Route path="/engagement/all">
         <Engagements />
       </Route>
-      <Route path="/engagement/show/:id">
+      <Route path="/engagement/view/:id">
         <RecordEngagementForm action="show" />
       </Route>
       <Route path="/engagement/update/:id">
