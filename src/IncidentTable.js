@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './Firebase';
-import TableContainer from './tables/TableContainer';
+import DataTable from './DataTable';
 
-const incidentMeta = [
+const columns = [
   {
-    name: 'id',
-    label: 'View',
-    display: false,
-    sortable: false,
-    link: id => `/incident/view/${id}`,
+    field: 'id',
+    title: 'View',
+    sorting: false,
+    hidden: true,
   },
   {
-    name: 'participantId',
-    label: 'Participant',
-    display: false,
-    sortable: false,
-    link: id => `/participant/view/${id}`,
+    field: 'participantId',
+    title: 'Participant',
+    hidden: true,
+    detail: true,
   },
-  { name: 'firstName', label: 'First Name' },
-  { name: 'lastName', label: 'Last Name' },
-  { name: 'dateOfRequest', label: 'Date of Request', type: 'date' },
-  { name: 'location', label: 'Location' },
-  { name: 'pointOfContact', label: 'Point of Contact' },
-  { name: 'receivedNarcan', label: 'Received Narcan', type: 'boolean' },
-  { name: 'notes', label: 'Notes' },
-  { name: 'status', label: 'Status' },
+  { field: 'firstName', title: 'First Name', searchable: true },
+  { field: 'lastName', title: 'Last Name', searchable: true },
+  { field: 'dateOfRequest', title: 'Date of Request', type: 'date' },
+  { field: 'location', title: 'Location', searchable: true },
+  { field: 'pointOfContact', title: 'Point of Contact' },
+  { field: 'receivedNarcan', title: 'Received Narcan', type: 'boolean' },
+  { field: 'notes', title: 'Notes', hidden: true, detail: true },
+  { field: 'status', title: 'Status', hidden: true },
 ];
 
 export default () => {
@@ -46,10 +44,6 @@ export default () => {
   );
 
   return (
-    <TableContainer
-      columns={incidentMeta}
-      rows={incidents}
-      collectionName="incident"
-    />
+    <DataTable columns={columns} rows={incidents} collectionName="incident" />
   );
 };
