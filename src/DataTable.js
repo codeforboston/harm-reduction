@@ -19,8 +19,17 @@ const panelItemStyle = {
   paddingLeft: '6em', // to avoid tooltip
 };
 
-export default props => {
-  const { columns, rows, collectionName } = props;
+/**
+ * DataTable (MUI MaterialTable wrapper)
+ * @param {Array} columns: column definitions for table,
+ * (see material-table docs for options), passed thru directly
+ * except for 'detail' field. If .detail is true, data displays
+ * in expandable DetailPanel only when activated.
+ * @param {Array} rows: the data - direct pass-thru
+ * @param {string} collectionName: the db collection, used for table
+ * name and urls
+ */
+export default ({ columns, rows, collectionName }) => {
   const history = useHistory();
   const detailFields = columns.filter(col => col.detail === true);
 
@@ -46,21 +55,23 @@ export default props => {
         },
       ]}
       detailPanel={
-        detailFields.length > 0 && [
-          {
-            icon: tableIcons.Unfold,
-            tooltip: 'Show Details',
-            render: rowData =>
-              detailFields.map(
-                item =>
-                  rowData[item.field] && (
-                    <div style={panelItemStyle}>
-                      {item.title}: {rowData[item.field]}
-                    </div>
-                  )
-              ),
-          },
-        ]
+        detailFields.length > 0
+          ? [
+              {
+                icon: tableIcons.Unfold,
+                tooltip: 'Show Details',
+                render: rowData =>
+                  detailFields.map(
+                    item =>
+                      rowData[item.field] && (
+                        <div style={panelItemStyle}>
+                          {item.title}: {rowData[item.field]}
+                        </div>
+                      )
+                  ),
+              },
+            ]
+          : undefined
       }
     />
   );
