@@ -36,9 +36,8 @@ test('Renders a form and table of participants', () => {
     onSnapshot: callback => callback(participantDocs),
   });
 
-  const { baseElement, getByText } = renderParticipants();
+  const { getByText } = renderParticipants();
 
-  expect(baseElement).toMatchSnapshot();
   participantDocs.forEach(doc =>
     expect(getByText(doc.data().firstName)).toBeInTheDocument()
   );
