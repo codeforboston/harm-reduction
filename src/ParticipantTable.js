@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './Firebase';
+import DataTable from './DataTable';
 
-const column = (name, getter) => ({ name, getter });
 const columns = [
-  column('ID', row => row.id),
-  column('First Name', row => row.firstName),
-  column('Last Name', row => row.lastName),
-  column('Ethnicity', row => row.ethnicity),
-  column('State of Change', row => row.stateOfChange),
-  column('New or Existing', row => row.newOrExisting),
-  column('Age', row => row.age),
-  column('Gender', row => row.gender),
+  {
+    field: 'id',
+    title: 'Participant',
+    sorting: false,
+    hidden: true,
+  },
+  { field: 'firstName', title: 'First Name', searchable: true },
+  { field: 'lastName', title: 'Last Name', searchable: true },
+  { field: 'ethnicity', title: 'Ethnicity' },
+  { field: 'stateOfChange', title: 'State of Change' },
+  { field: 'newOrExisting', title: 'New or Existing' },
+  { field: 'age', title: 'Age' },
+  { field: 'gender', title: 'Gender' },
 ];
-
-const fullName = participant =>
-  `${participant.firstName} ${participant.lastName}`.trim();
 
 export default () => {
   const [participants, setParticipants] = useState([]);
@@ -29,30 +31,16 @@ export default () => {
             ...doc.data(),
           });
         });
-        participants.sort((a, b) => fullName(a).localeCompare(fullName(b)));
         setParticipants(participants);
       }),
     []
   );
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map((column, index) => (
-            <th key={index}>{column.name}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {participants.map(participant => (
-          <tr key={participant.id}>
-            {columns.map((column, index) => (
-              <td key={index}>{column.getter(participant)}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <DataTable
+      columns={columns}
+      rows={participants}
+      collectionName="participant"
+    />
   );
 };
