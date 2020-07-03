@@ -1,9 +1,9 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useEffect, useReducer, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import FormSelect from './FormSelect';
+import Form from 'react-bootstrap/Form';
 import { db } from './Firebase';
-import ParticipantLookUp from './ParticipantLookUp';
+import FormSelect from './FormSelect';
+import LookUpExisting from './LookUpExisting';
 
 export const stateOfChange = {
   default: 'Not Decided',
@@ -78,7 +78,7 @@ export default () => {
       homeless: false,
     }
   );
-  
+
   const [participants, setParticipants] = useState([]);
 
   const handleChange = e => {
@@ -122,10 +122,6 @@ export default () => {
     []
   );
 
-  const select = a => {
-    Object.entries(a).forEach(entry => update({ [entry[0]]: entry[1] }));
-  };
-
   return (
     <div>
       <div
@@ -141,7 +137,7 @@ export default () => {
           <em>{state.status}</em>
         </p>
       </div>
-      <ParticipantLookUp participants={participants} selection={select} />
+      <LookUpExisting records={participants} update={update} />
       <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>

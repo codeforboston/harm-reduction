@@ -59,22 +59,6 @@ export default () => {
     []
   );
 
-  const requestData = [
-    'participantId',
-    'firstName',
-    'lastName',
-    'associatedIncident',
-    'dateEngaged',
-    'pointPerson',
-    'stateOfChange',
-    'needsIdentified',
-    'narcanEnrollment',
-    'followUpDate',
-    'firstPerson',
-    'notes',
-    'status',
-  ];
-
   const handleChange = e => {
     const value = e.target.value;
     const id = e.target.id;
