@@ -41,7 +41,6 @@ export default () => {
     }
   };
 
-  console.log('first and last', state.firstName, state.lastName);
   return (
     <div>
       <div
