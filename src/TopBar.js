@@ -1,12 +1,18 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import { auth } from './Firebase';
 
 export default () => {
+  let history = useHistory();
+
+  function handleClick() {
+    history.push('/profile');
+  }
+
   return (
     <Container fluid className="top-bar">
       <Row style={{ alignItems: 'center' }}>
@@ -15,6 +21,14 @@ export default () => {
         <Item to="/incidents" label="Incidents" />
         <Item to="/engagements" label="Engagements" />
         <div style={{ flexGrow: 1 }} />
+        <Button
+          className="profile-button"
+          variant="dark"
+          label="Profile"
+          onClick={handleClick}
+        >
+          Profile
+        </Button>
         <Button variant="light" onClick={() => auth.signOut()}>
           Log Out
         </Button>
