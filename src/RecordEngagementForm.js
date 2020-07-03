@@ -162,8 +162,13 @@ export default () => {
         <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
           <LookUpExisting
             records={participants}
-            requestData={requestData}
-            update={update}
+            update={participant =>
+              update({
+                firstName: participant.firstName,
+                lastName: participant.lastName,
+                participantId: participant.id,
+              })
+            }
           />
           <Row>
             <Form.Group as={Col} controlId="firstName">

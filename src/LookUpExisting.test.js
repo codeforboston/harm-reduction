@@ -1,68 +1,71 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { db } from './Firebase';
 import LookUpExisting from './LookUpExisting';
-import RecordEngagementForm from './RecordEngagementForm';
-
-jest.mock('./Firebase');
 
 const createRecord = num => {
-  return [
-    'participantId_' + num,
-    'firstName_' + num,
-    'lastName_' + num,
-    'associatedIncident_' + num,
-    'dateEngaged_' + num,
-    'pointPerson_' + num,
-    'stateOfChange_' + num,
-    'needsIdentified_' + num,
-    'narcanEnrollment_' + num,
-    'followUpDate_' + num,
-    'firstPerson_' + num,
-    'notes_' + num,
-    'status_' + num,
-  ];
+  return {
+    id: num,
+    firstName: 'firstName_' + num,
+    lastName: 'lastName_' + num,
+  };
 };
 
-const records = [createRecord("one"), createRecord("two"), createRecord("three")];
+const records = [
+  createRecord('one'),
+  createRecord('two'),
+  createRecord('three'),
+];
 
 test('Renders LookUpExisting', () => {
-  const { container, getByTestId } = render(
-    <LookUpExisting records={records} />
+  const { getByTestId } = render(
+    <LookUpExisting records={records} update={() => {}} />
   );
   expect(getByTestId('LookUpExisting')).toBeInTheDocument();
 });
 
-test('lists results when search', async () => {
-  render(<LookUpExisting records={records} />);
+test('Displays results in dropdown', () => {
+  const update = () => {};
+  const { getByText, getByLabelText } = render(
+    <LookUpExisting records={records} update={update} />
+  );
 
-  const searchBox = screen.getByLabelText('Search Participants')
-  await userEvent.type(searchBox, "firstName")
+  const searchBox = getByLabelText('Search Participants');
+  userEvent.type(searchBox, 'firstName_one');
 
-  expect(screen.getByTestId('searchresults').firstChild).toBeInTheDocument()
-})
+  expect(searchBox.value).toContain('firstName_one');
 
-
-test('Passes data to RecordForm',  () => {
-  render(<LookUpExisting records={records} />);
-
-  const searchBox = screen.getByLabelText('Search Participants')
-   userEvent.type(searchBox, "firstName")
-  
-  expect(searchBox.value).toContain("firstName")
-  
-})
-
-
-test('Clear resets form', () => {
-  render(<LookUpExisting records={records} />);
-
-  userEvent.click(screen.getByText('Clear'));
-
-  expect(screen.getByTestId('searchresults').firstChild).not.toBeInTheDocument()
+  expect(screen.getByTestId('searchresults').firstChild).toBeInTheDocument();
+  expect(getByText('firstName_one lastName_one')).toBeInTheDocument();
 });
 
+test('Notifies selected result', () => {
+  let result;
+  const update = record => (result = record);
+  const { getByText, getByLabelText } = render(
+    <LookUpExisting records={records} update={update} />
+  );
 
+  const searchBox = getByLabelText('Search Participants');
+  userEvent.type(searchBox, 'firstName_one');
 
+  expect(searchBox.value).toContain('firstName_one');
+
+  userEvent.click(getByText('firstName_one lastName_one'));
+  expect(result).toEqual(records[0]);
+});
+
+test('Clear resets form', () => {
+  const searchText = 'Joe';
+  const update = () => {};
+  const { queryByDisplayValue, getByLabelText, getByText } = render(
+    <LookUpExisting records={records} update={update} />
+  );
+
+  const searchBox = getByLabelText('Search Participants');
+  userEvent.type(searchBox, searchText);
+
+  expect(queryByDisplayValue(searchText)).not.toBeNull();
+  userEvent.click(getByText('Clear'));
+  expect(queryByDisplayValue(searchText)).toBeNull();
+});

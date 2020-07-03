@@ -6,16 +6,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
 export default props => {
-  const { records, requestData, update } = props;
+  const { records, update } = props;
   const [filteredParts, setFilter] = useState([]);
   const [searchString, setSearchString] = useState('');
-  const [selected, setSelected] = useState('none selected');
-
-  const allRecords = Object.values(records);
 
   const resetLookUp = () => {
     setFilter([]);
-    setSelected('none selected');
     setSearchString('');
   };
 
@@ -24,32 +20,20 @@ export default props => {
       return resetLookUp();
     }
     if (e.keyCode === 13) {
-      setSelected(e.target.value);
       return resetLookUp();
     }
     setSearchString(e.target.value);
-console.log(allRecords)
-    const matchedRecords = allRecords.filter(b => b.firstName.includes(searchString));
 
-    setFilter(allRecords);
-  };
+    const matchedRecords = records.filter(b =>
+      b.firstName.includes(searchString)
+    );
 
-  const fulfillRequestData = result => {
-    return requestData.map(r => {
-      if (r === 'participantId') {
-        r = 'id';
-      }
-      return result[r] ? result[r] : '';
-    });
+    setFilter(matchedRecords);
   };
 
   const handleResultClick = result => {
     resetLookUp();
-    const data = fulfillRequestData(result);
-    requestData.map((r, i) => {
-      return update({ [r]: data[i] });
-    });
-    setSelected(result);
+    update(result);
   };
 
   return (
