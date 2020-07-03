@@ -7,13 +7,11 @@ import Button from 'react-bootstrap/Button';
 import { auth } from './Firebase';
 
 export default () => {
-
   let history = useHistory();
 
   function handleClick() {
-    history.push("/profile");
+    history.push('/profile');
   }
-
 
   return (
     <Container fluid className="top-bar">
@@ -23,14 +21,19 @@ export default () => {
         <Item to="/incidents" label="Incidents" />
         <Item to="/engagements" label="Engagements" />
         <div style={{ flexGrow: 1 }} />
-        <Button className="profile-button" variant="dark" label="Profile" onClick={handleClick} > {/* changing font color to dark doesn't work here for some reason, so I changed the button from light themed to dark themed for now */}
+        <Button
+          className="profile-button"
+          variant="dark"
+          label="Profile"
+          onClick={handleClick}
+        >
           Profile
         </Button>
         <Button variant="light" onClick={() => auth.signOut()}>
           Log Out
         </Button>
       </Row>
-    </Container >
+    </Container>
   );
 };
 

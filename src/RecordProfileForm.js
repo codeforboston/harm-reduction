@@ -13,31 +13,35 @@ export default () => {
     }
   );
 
-  const { user } = useAuthState()
-  const userDoc = useMemo(() => db.collection('users').doc(user.uid), [user.uid]);
+  const { user } = useAuthState();
+  const userDoc = useMemo(() => db.collection('users').doc(user.uid), [
+    user.uid,
+  ]);
 
   useEffect(() => {
     const loadUser = async () => {
       const { firstName, lastName } = (await userDoc.get()).data() || {};
       update({ firstName, lastName });
-    }
+    };
     loadUser();
-  }, [userDoc])
+  }, [userDoc]);
 
   const handleSubmit = async event => {
     event.preventDefault();
     event.stopPropagation();
 
     try {
-      await userDoc.set({ firstName: state.firstName, lastName: state.lastName })
+      await userDoc.set({
+        firstName: state.firstName,
+        lastName: state.lastName,
+      });
       update({ status: 'Profile Updated!' });
-
     } catch (e) {
       update({ status: 'Error! ' + e });
     }
   };
 
-  console.log('first and last', state.firstName, state.lastName)
+  console.log('first and last', state.firstName, state.lastName);
   return (
     <div>
       <div
@@ -72,7 +76,6 @@ export default () => {
             onChange={e => update({ lastName: e.target.value })}
           />
         </Form.Group>
-
 
         <Button variant="primary" type="submit">
           Update Profile

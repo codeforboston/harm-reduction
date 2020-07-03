@@ -20,13 +20,13 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 ## Important Links
 
-[Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing) 
+[Welcome Document](https://docs.google.com/document/d/1_yO1GpPvAFnRMpydOWtpd19yDq7Tr0t0ZJdet0WwJpY/edit?usp=sharing)
 
 [Trello Sprint Board](https://trello.com/b/E93Cmx9n/harm-reduction) - This tracks work items
 
-[Trello Roadmap Board](https://trello.com/b/V3pZZWe1/harm-reduction-roadmap) - This holds our long-term planning info  
+[Trello Roadmap Board](https://trello.com/b/V3pZZWe1/harm-reduction-roadmap) - This holds our long-term planning info
 
-[Google Meet Room](http://www.codeforboston.org/rooms/harmreduction)  
+[Google Meet Room](http://www.codeforboston.org/rooms/harmreduction)
 
 [Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)
 
