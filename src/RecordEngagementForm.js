@@ -30,12 +30,10 @@ export default () => {
     }
   );
   const [incidents, setIncidents] = useState([]);
-  const [participant, setParticipant] = useState([]);
 
   const handleParticipantUpdate = async id => {
     update({ participantId: id });
     const participant = id ? await getParticipantById(id) : {};
-    setParticipant(participant);
     await getIncidents(id);
     update({
       firstName: participant.firstName || '',
