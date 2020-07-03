@@ -10,7 +10,7 @@ import {
   ethnicity,
   race,
 } from './Options';
-import { addParticipant } from './Database';
+import { addParticipant } from './API';
 
 export default () => {
   const [state, update] = useReducer(

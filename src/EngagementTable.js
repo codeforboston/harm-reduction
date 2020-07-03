@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from './Firebase';
+import { db } from './API';
 import DataTable from './DataTable';
 
 const columns = [

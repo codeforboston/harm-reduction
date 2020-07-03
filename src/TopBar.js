@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import { NavLink, useHistory } from 'react-router-dom';
 import './App.css';
 import Button from 'react-bootstrap/Button';
-import { auth } from './Database/Firebase';
+import { auth } from './API';
 
 export default () => {
   let history = useHistory();

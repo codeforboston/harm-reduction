@@ -8,7 +8,7 @@ import {
   addEngagement,
   getParticipantById,
   getIncidentsByParticipantId,
-} from './Database/FirebaseEngagementForm';
+} from './API';
 
 export default () => {
   const [state, update] = useReducer(
@@ -33,7 +33,7 @@ export default () => {
   const [participant, setParticipant] = useState([]);
 
   const handleParticipantUpdate = async id => {
-    update({participantId: id});
+    update({ participantId: id });
     const participant = id ? await getParticipantById(id) : {};
     setParticipant(participant);
     await getIncidents(id);

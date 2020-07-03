@@ -2,7 +2,7 @@ import { render, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { db } from './Database/Firebase';
+import { db } from './API';
 import Participants from './Participants';
 import {
   age,
@@ -12,7 +12,7 @@ import {
   newOrExisting,
 } from './RecordParticipantForm';
 
-jest.mock('./Firebase');
+jest.mock('./API');
 
 const createParticipantDoc = (id, firstName, lastName) => ({
   id,

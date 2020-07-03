@@ -1,5 +1,40 @@
 import { db } from './Firebase';
 
+export const addParticipant = async participant => {
+  try {
+    await db.collection('participants').add({
+      firstName: participant.firstName,
+      lastName: participant.lastName,
+      stateOfChange: participant.stateOfChange,
+      newOrExisting: participant.newOrExisting,
+      age: participant.age,
+      gender: participant.gender,
+      ethnicity: participant.ethnicity,
+    });
+    return 'Submitted!';
+  } catch (e) {
+    return 'Error! ' + e;
+  }
+};
+
+export const addIncident = async incident => {
+  try {
+    await db.collection('incidents').add({
+      participantId: incident.participantId,
+      firstName: incident.firstName,
+      lastName: incident.lastName,
+      pointOfContact: incident.pointOfContact,
+      location: incident.location,
+      dateOfRequest: incident.dateOfRequest,
+      receivedNarcan: incident.receivedNarcan,
+      notes: incident.notes,
+    });
+    return 'Submitted!';
+  } catch (e) {
+    return 'Error! ' + e;
+  }
+};
+
 export const addEngagement = async engagement => {
   try {
     await db.collection('engagements').add({
