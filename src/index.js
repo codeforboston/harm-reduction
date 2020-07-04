@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import './Firebase';
+import './API';
 import { AuthProvider } from './Auth';
 
 ReactDOM.render(

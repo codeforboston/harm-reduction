@@ -1,10 +1,14 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FormSelect from './FormSelect';
-import { db } from './Firebase';
+import {
+  addEngagement,
+  getParticipantById,
+  getIncidentsByParticipantId,
+} from './API';
 
 export default () => {
   const [state, update] = useReducer(
@@ -26,37 +30,21 @@ export default () => {
     }
   );
   const [incidents, setIncidents] = useState([]);
-  const [participants, setParticipants] = useState([]);
 
-  useEffect(
-    () =>
-      db.collection('incidents').onSnapshot(snapshot => {
-        const incidents = [];
-        snapshot.forEach(doc => {
-          incidents.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setIncidents(incidents);
-      }),
-    []
-  );
+  const handleParticipantUpdate = async id => {
+    update({ participantId: id });
+    const participant = id ? await getParticipantById(id) : {};
+    await getIncidents(id);
+    update({
+      firstName: participant.firstName || '',
+      lastName: participant.lastName || '',
+    });
+  };
 
-  useEffect(
-    () =>
-      db.collection('participants').onSnapshot(snapshot => {
-        const participants = [];
-        snapshot.forEach(doc => {
-          participants.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setParticipants(participants);
-      }),
-    []
-  );
+  const getIncidents = async id => {
+    const incidentsById = await getIncidentsByParticipantId(id);
+    setIncidents(incidentsById);
+  };
 
   const handleChange = e => {
     const value = e.target.value;
@@ -68,25 +56,23 @@ export default () => {
     event.preventDefault();
     event.stopPropagation();
 
-    try {
-      await db.collection('engagements').add({
-        participantId: state.participantId,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        associatedIncident: state.associatedIncident,
-        dateEngaged: state.dateEngaged,
-        pointPerson: state.pointPerson,
-        stateOfChange: state.stateOfChange,
-        needsIdentified: state.needsIdentified,
-        narcanEnrollment: state.narcanEnrollment,
-        followUpDate: state.followUpDate,
-        firstPerson: state.firstPerson,
-        notes: state.notes,
-      });
-      update({ status: 'Submitted!' });
-    } catch (e) {
-      update({ status: 'Error! ' + e });
-    }
+    const engagement = {
+      participantId: state.participantId,
+      firstName: state.firstName,
+      lastName: state.lastName,
+      associatedIncident: state.associatedIncident,
+      dateEngaged: state.dateEngaged,
+      pointPerson: state.pointPerson,
+      stateOfChange: state.stateOfChange,
+      needsIdentified: state.needsIdentified,
+      narcanEnrollment: state.narcanEnrollment,
+      followUpDate: state.followUpDate,
+      firstPerson: state.firstPerson,
+      notes: state.notes,
+    };
+
+    const addStatus = await addEngagement(engagement);
+    update({ status: addStatus });
   };
 
   const displayIncident = incident => {
@@ -99,6 +85,7 @@ export default () => {
           borderRadius: '5px',
           padding: '1em',
         }}
+        key={incident.id}
       >
         <p>Incident Id: {incident.id}</p>
         <p>Date of Incident: {incident.dateOfRequest}</p>
@@ -108,16 +95,6 @@ export default () => {
       </Form.Group>
     );
   };
-  const fillParticipantInfo = e => {
-    const partFiltered = participants.filter(a => a.id === e.target.value);
-    update({ participantId: e.target.value });
-    update({ firstName: partFiltered[0] ? partFiltered[0].firstName : '' });
-    update({ lastName: partFiltered[0] ? partFiltered[0].lastName : '' });
-  };
-
-  const associatedIncidents = incidents.filter(
-    a => a.participantId === state.participantId
-  );
 
   return (
     <div>
@@ -146,17 +123,14 @@ export default () => {
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control
-                value={state.firstName}
-                onChange={e => update({ firstName: e.target.value })}
-              />
+              <Form.Control value={state.firstName} onChange={handleChange} />
             </Form.Group>
             <Form.Group as={Col} controlId="lastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 value={state.lastName}
                 type="text"
-                onChange={e => update({ lastName: e.target.value })}
+                onChange={handleChange}
               />
             </Form.Group>
           </Row>
@@ -166,19 +140,17 @@ export default () => {
               required
               value={state.participantId}
               type="text"
-              onChange={e => fillParticipantInfo(e)}
+              onChange={e => handleParticipantUpdate(e.target.value)}
             />
           </Form.Group>
           <FormSelect
             label="Associated Incident"
-            options={['None selected', ...associatedIncidents.map(a => a.id)]}
+            options={['None selected', ...incidents.map(a => a.id)]}
             onChange={handleChange}
           />
-          <Form.Group>
-            {associatedIncidents
-              .filter(a => a.id === state.associatedIncident)
-              .map(a => displayIncident(a))}
-          </Form.Group>
+          {incidents
+            .filter(incident => incident.id === state.associatedIncident)
+            .map(incident => displayIncident(incident))}
           <Form.Check
             id="narcanEnrollment"
             style={{ margin: '20px 0 10px 0' }}
