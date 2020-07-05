@@ -1,9 +1,7 @@
-import { render, act, getByLabelText } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { db, addIncident } from './API';
 import RecordIncidentForm from './RecordIncidentForm';
-import { stateOfChange } from './Options';
 
 jest.mock('./API');
 
