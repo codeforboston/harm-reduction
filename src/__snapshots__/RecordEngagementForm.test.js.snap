@@ -1,0 +1,562 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Incident Form 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          style="width: 50%; margin-left: 5%; margin-top: 5%; margin-bottom: 5%;"
+        >
+          <div
+            style="display: flex; align-items: baseline; justify-content: flex-start; margin-bottom: 2em;"
+          >
+            <h2
+              style="flex: 1;"
+            >
+              Add a new engagement
+            </h2>
+            <p
+              style="flex: 1; font-weight: 400; font-size: 1em;"
+            >
+              <em>
+                Waiting for input
+              </em>
+            </p>
+          </div>
+          <form
+            class=""
+            style="margin-bottom: 20px;"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="form-group col"
+              >
+                <label
+                  class="form-label"
+                  for="firstName"
+                >
+                  First Name
+                </label>
+                <input
+                  class="form-control"
+                  id="firstName"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col"
+              >
+                <label
+                  class="form-label"
+                  for="lastName"
+                >
+                  Last Name
+                </label>
+                <input
+                  class="form-control"
+                  id="lastName"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="participantId"
+              >
+                Participant ID
+              </label>
+              <input
+                class="form-control"
+                id="participantId"
+                required=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="associatedIncident"
+              >
+                Associated Incident
+              </label>
+              <select
+                class="form-control"
+                id="associatedIncident"
+                type="text"
+              >
+                <option>
+                  None selected
+                </option>
+              </select>
+            </div>
+            <div
+              class="form-check"
+              style="margin: 20px 0px 10px 0px;"
+            >
+              <input
+                class="form-check-input"
+                id="narcanEnrollment"
+                type="checkbox"
+              />
+              <label
+                class="form-check-label"
+                for="narcanEnrollment"
+                title=""
+              >
+                Narcan Enrollment
+              </label>
+            </div>
+            <div
+              class="form-check"
+              style="margin: 10px 0px 20px 0px;"
+            >
+              <input
+                class="form-check-input"
+                id="firstPerson"
+                type="checkbox"
+              />
+              <label
+                class="form-check-label"
+                for="firstPerson"
+                title=""
+              >
+                First Person
+              </label>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="dateEngaged"
+              >
+                Date Engaged
+              </label>
+              <input
+                class="form-control"
+                id="dateEngaged"
+                required=""
+                type="date"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="pointPerson"
+              >
+                Point Person
+              </label>
+              <select
+                class="form-control"
+                id="pointPerson"
+                type="text"
+              >
+                <option>
+                  Not Assigned
+                </option>
+                <option>
+                  CarrieAnn
+                </option>
+                <option>
+                  Chris
+                </option>
+              </select>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="stageOfChange"
+              >
+                Stage of Change
+              </label>
+              <select
+                class="form-control"
+                id="stageOfChange"
+                type="text"
+              >
+                <option>
+                  Not Decided
+                </option>
+                <option>
+                  Precontemplation
+                </option>
+                <option>
+                  Contemplation
+                </option>
+                <option>
+                  Preparation
+                </option>
+                <option>
+                  Action
+                </option>
+                <option>
+                  Maintenance
+                </option>
+              </select>
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="followUpDate"
+              >
+                Follow Up Date
+              </label>
+              <input
+                class="form-control"
+                id="followUpDate"
+                required=""
+                type="date"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="notes"
+              >
+                Notes
+              </label>
+              <textarea
+                class="form-control"
+                id="notes"
+                rows="7"
+              />
+            </div>
+            <button
+              class="btn btn-primary"
+              type="submit"
+            >
+              Record Engagement
+            </button>
+             
+            STATUS: 
+            Waiting for input
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        style="width: 50%; margin-left: 5%; margin-top: 5%; margin-bottom: 5%;"
+      >
+        <div
+          style="display: flex; align-items: baseline; justify-content: flex-start; margin-bottom: 2em;"
+        >
+          <h2
+            style="flex: 1;"
+          >
+            Add a new engagement
+          </h2>
+          <p
+            style="flex: 1; font-weight: 400; font-size: 1em;"
+          >
+            <em>
+              Waiting for input
+            </em>
+          </p>
+        </div>
+        <form
+          class=""
+          style="margin-bottom: 20px;"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="form-group col"
+            >
+              <label
+                class="form-label"
+                for="firstName"
+              >
+                First Name
+              </label>
+              <input
+                class="form-control"
+                id="firstName"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group col"
+            >
+              <label
+                class="form-label"
+                for="lastName"
+              >
+                Last Name
+              </label>
+              <input
+                class="form-control"
+                id="lastName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="participantId"
+            >
+              Participant ID
+            </label>
+            <input
+              class="form-control"
+              id="participantId"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="associatedIncident"
+            >
+              Associated Incident
+            </label>
+            <select
+              class="form-control"
+              id="associatedIncident"
+              type="text"
+            >
+              <option>
+                None selected
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-check"
+            style="margin: 20px 0px 10px 0px;"
+          >
+            <input
+              class="form-check-input"
+              id="narcanEnrollment"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="narcanEnrollment"
+              title=""
+            >
+              Narcan Enrollment
+            </label>
+          </div>
+          <div
+            class="form-check"
+            style="margin: 10px 0px 20px 0px;"
+          >
+            <input
+              class="form-check-input"
+              id="firstPerson"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="firstPerson"
+              title=""
+            >
+              First Person
+            </label>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="dateEngaged"
+            >
+              Date Engaged
+            </label>
+            <input
+              class="form-control"
+              id="dateEngaged"
+              required=""
+              type="date"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="pointPerson"
+            >
+              Point Person
+            </label>
+            <select
+              class="form-control"
+              id="pointPerson"
+              type="text"
+            >
+              <option>
+                Not Assigned
+              </option>
+              <option>
+                CarrieAnn
+              </option>
+              <option>
+                Chris
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="stageOfChange"
+            >
+              Stage of Change
+            </label>
+            <select
+              class="form-control"
+              id="stageOfChange"
+              type="text"
+            >
+              <option>
+                Not Decided
+              </option>
+              <option>
+                Precontemplation
+              </option>
+              <option>
+                Contemplation
+              </option>
+              <option>
+                Preparation
+              </option>
+              <option>
+                Action
+              </option>
+              <option>
+                Maintenance
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="followUpDate"
+            >
+              Follow Up Date
+            </label>
+            <input
+              class="form-control"
+              id="followUpDate"
+              required=""
+              type="date"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+          >
+            <label
+              class="form-label"
+              for="notes"
+            >
+              Notes
+            </label>
+            <textarea
+              class="form-control"
+              id="notes"
+              rows="7"
+            />
+          </div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Record Engagement
+          </button>
+           
+          STATUS: 
+          Waiting for input
+        </form>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
