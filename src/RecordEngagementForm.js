@@ -1,13 +1,16 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FormSelect from './FormSelect';
+
+import LookUpExisting from './LookUpExisting';
 import {
   addEngagement,
   getParticipantById,
   getIncidentsByParticipantId,
+  db,
 } from './API';
 
 export default () => {
@@ -30,6 +33,22 @@ export default () => {
     }
   );
   const [incidents, setIncidents] = useState([]);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(
+    () =>
+      db.collection('participants').onSnapshot(snapshot => {
+        const participants = [];
+        snapshot.forEach(doc => {
+          participants.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setParticipants(participants);
+      }),
+    []
+  );
 
   const handleParticipantUpdate = async id => {
     update({ participantId: id });
@@ -120,6 +139,16 @@ export default () => {
           </p>
         </div>
         <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+          <LookUpExisting
+            records={participants}
+            update={participant =>
+              update({
+                firstName: participant.firstName,
+                lastName: participant.lastName,
+                participantId: participant.id,
+              })
+            }
+          />
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>

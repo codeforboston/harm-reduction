@@ -32,7 +32,7 @@ const renderParticipants = () =>
   );
 
 test('Renders a form and table of participants', () => {
-  db.collection.mockReturnValueOnce({
+  db.collection.mockReturnValue({
     onSnapshot: callback => callback(participantDocs),
   });
 

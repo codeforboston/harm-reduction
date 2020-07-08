@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useEffect, useReducer, useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import LookUpExisting from './LookUpExisting';
 import FormSelect from './FormSelect';
 import {
   stateOfChange,
@@ -10,7 +11,7 @@ import {
   ethnicity,
   race,
 } from './Options';
-import { addParticipant } from './API';
+import { addParticipant, db } from './API';
 
 export default () => {
   const [state, update] = useReducer(
@@ -29,6 +30,8 @@ export default () => {
       homeless: false,
     }
   );
+
+  const [participants, setParticipants] = useState([]);
 
   const handleChange = e => {
     e.preventDefault();
@@ -54,6 +57,21 @@ export default () => {
     update({ status: addStatus });
   };
 
+  useEffect(
+    () =>
+      db.collection('participants').onSnapshot(snapshot => {
+        const participants = [];
+        snapshot.forEach(doc => {
+          participants.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setParticipants(participants);
+      }),
+    []
+  );
+
   return (
     <div>
       <div
@@ -69,6 +87,7 @@ export default () => {
           <em>{state.status}</em>
         </p>
       </div>
+      <LookUpExisting records={participants} update={update} />
       <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
