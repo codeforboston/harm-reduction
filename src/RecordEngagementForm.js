@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -10,6 +10,7 @@ import {
   addEngagement,
   getParticipantById,
   getIncidentsByParticipantId,
+  db,
 } from './API';
 
 export default () => {
@@ -32,6 +33,22 @@ export default () => {
     }
   );
   const [incidents, setIncidents] = useState([]);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(
+    () =>
+      db.collection('participants').onSnapshot(snapshot => {
+        const participants = [];
+        snapshot.forEach(doc => {
+          participants.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setParticipants(participants);
+      }),
+    []
+  );
 
   const handleParticipantUpdate = async id => {
     update({ participantId: id });
