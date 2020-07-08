@@ -71,10 +71,14 @@ export default () => {
         >
           <h2 style={{ flex: 1 }}>Add a new incident</h2>
           <p style={{ flex: 1, fontWeight: '400', fontSize: '1em' }}>
-            <em>{state.status}</em>
+            <em data-testid="submissionstatus">{state.status}</em>
           </p>
         </div>
-        <Form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+        <Form
+          data-testid="submitform"
+          onSubmit={handleSubmit}
+          style={{ marginBottom: '20px' }}
+        >
           <Row>
             <Form.Group as={Col} controlId="firstName">
               <Form.Label>First Name</Form.Label>
@@ -138,7 +142,7 @@ export default () => {
           <Button variant="primary" type="submit">
             Record Incident
           </Button>{' '}
-          STATUS: {state.status}
+          <p>STATUS: {state.status}</p>
         </Form>
       </div>
     </div>
