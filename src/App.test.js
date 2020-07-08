@@ -4,9 +4,9 @@ import App from './App';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from './Auth';
-import { auth, db } from './Firebase';
+import { auth, db } from './API';
 
-jest.mock('./Firebase');
+jest.mock('./API');
 
 const renderApp = () =>
   render(

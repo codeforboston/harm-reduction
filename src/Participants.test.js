@@ -2,7 +2,7 @@ import { render, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { db } from './Firebase';
+import { db, addParticipant } from './API';
 import Participants from './Participants';
 import {
   age,
@@ -10,9 +10,9 @@ import {
   gender,
   stateOfChange,
   newOrExisting,
-} from './RecordParticipantForm';
+} from './Options';
 
-jest.mock('./Firebase');
+jest.mock('./API');
 
 const createParticipantDoc = (id, firstName, lastName) => ({
   id,
@@ -48,7 +48,6 @@ test('Can record a participant', async () => {
 
   db.collection.mockReturnValue({
     onSnapshot: callback => callback([]),
-    add: jest.fn(),
   });
 
   const { getByText, getByLabelText } = renderParticipants();
@@ -57,7 +56,7 @@ test('Can record a participant', async () => {
   await userEvent.type(getByLabelText('Last Name'), lastName);
   await act(async () => userEvent.click(getByText('Record Participant')));
 
-  expect(db.collection().add).toHaveBeenCalledWith({
+  expect(addParticipant).toHaveBeenCalledWith({
     firstName,
     lastName,
     age: age.default,

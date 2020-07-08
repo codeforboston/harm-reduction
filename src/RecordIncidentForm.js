@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { db } from './Firebase';
+import { addIncident, getParticipantById } from './API';
 
 export default () => {
   const [state, update] = useReducer(
@@ -25,21 +25,30 @@ export default () => {
     event.preventDefault();
     event.stopPropagation();
 
-    try {
-      await db.collection('incidents').add({
-        participantId: state.participantId,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        pointOfContact: state.pointOfContact,
-        location: state.location,
-        dateOfRequest: state.dateOfRequest,
-        receivedNarcan: state.receivedNarcan,
-        notes: state.notes,
-      });
-      update({ status: 'Submitted!' });
-    } catch (e) {
-      update({ status: 'Error! ' + e });
-    }
+    const incident = {
+      participantId: state.participantId,
+      firstName: state.firstName,
+      lastName: state.lastName,
+      pointOfContact: state.pointOfContact,
+      location: state.location,
+      dateOfRequest: state.dateOfRequest,
+      receivedNarcan: state.receivedNarcan,
+      notes: state.notes,
+    };
+
+    const addStatus = await addIncident(incident);
+
+    update({ status: addStatus });
+  };
+
+  const handleParticipantId = async e => {
+    const id = e.target.value;
+    update({ participantId: id });
+    const participant = id ? await getParticipantById(id) : {};
+    update({
+      firstName: participant.firstName || '',
+      lastName: participant.lastName || '',
+    });
   };
 
   return (
@@ -89,7 +98,7 @@ export default () => {
               required
               value={state.participantId}
               type="text"
-              onChange={e => update({ participantId: e.target.value })}
+              onChange={handleParticipantId}
             />
           </Form.Group>
           <Row>
