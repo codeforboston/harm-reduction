@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Incident Form 1`] = `
+exports[`Renders Engagement Form 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -29,6 +29,51 @@ Object {
             class=""
             style="margin-bottom: 20px;"
           >
+            <div
+              data-testid="LookUpExisting"
+            >
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                  for="search"
+                >
+                  Search Participants
+                </label>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col-10"
+                  >
+                    <input
+                      autocomplete="off"
+                      class="form-control"
+                      id="search"
+                      style="margin-right: 1em;"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      class="list-group"
+                      data-testid="searchresults"
+                      id="search-result-list"
+                    />
+                  </div>
+                  <div
+                    class="col-2"
+                  >
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
               class="row"
             >
@@ -281,6 +326,51 @@ Object {
           class=""
           style="margin-bottom: 20px;"
         >
+          <div
+            data-testid="LookUpExisting"
+          >
+            <div
+              class="form-group"
+            >
+              <label
+                class="form-label"
+                for="search"
+              >
+                Search Participants
+              </label>
+              <div
+                class="row"
+              >
+                <div
+                  class="col-10"
+                >
+                  <input
+                    autocomplete="off"
+                    class="form-control"
+                    id="search"
+                    style="margin-right: 1em;"
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    class="list-group"
+                    data-testid="searchresults"
+                    id="search-result-list"
+                  />
+                </div>
+                <div
+                  class="col-2"
+                >
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div
             class="row"
           >

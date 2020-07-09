@@ -1,11 +1,16 @@
-import { render, getByText } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import RecordEngagementForm from './RecordEngagementForm';
+import { db } from './API';
 
 jest.mock('./API');
 
-test('Renders Incident Form', () => {
+db.collection.mockReturnValue({
+  onSnapshot: callback => callback([]),
+});
+
+test('Renders Engagement Form', () => {
   const engagementForm = render(<RecordEngagementForm />);
   expect(engagementForm).toMatchSnapshot();
 });
