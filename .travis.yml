@@ -1,4 +1,4 @@
-# Configures builds for all branches and deployment on the "master" branch.
+# Configures builds for all branches and deployment on the "main" branch.
 
 language: node_js
 node_js: node
@@ -7,7 +7,7 @@ stages:
   - lint
   - test
   - name: deploy
-    if: branch = master AND env(FIREBASE_TOKEN) IS present
+    if: branch = main AND env(FIREBASE_TOKEN) IS present
 
 jobs:
   include:
