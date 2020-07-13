@@ -1,6 +1,6 @@
 # Harm Reduction
 
-[![Build Status](https://travis-ci.org/codeforboston/harm-reduction.svg?branch=master)](https://travis-ci.org/codeforboston/harm-reduction)
+[![Build Status](https://travis-ci.org/codeforboston/harm-reduction.svg?branch=main)](https://travis-ci.org/codeforboston/harm-reduction)
 
 [Demo App](https://cfb-harm-reduction.web.app/)
 
@@ -95,7 +95,7 @@ To contribute a feature:
 2. Create a feature branch in your fork. Here we call it MY-FEATURE, but you should name your branch after the feature you're implementing, like participants-table
 
 ```
-git checkout master
+git checkout main
 git checkout -b MY-FEATURE
 git push --set-upstream origin MY-FEATURE
 ```
@@ -107,7 +107,7 @@ git push --set-upstream origin MY-FEATURE
 git push origin MY-FEATURE
 ```
 
-5. [Open a pull request](https://github.com/codeforboston/harm-reduction/compare) to merge your feature branch into codeforboston's master branch. Link to the Trello card in your PR description.
+5. [Open a pull request](https://github.com/codeforboston/harm-reduction/compare) to merge your feature branch into codeforboston's main branch. Link to the Trello card in your PR description.
 6. Respond to comments in the pull request conversation
 7. Once all checks pass and someone approves, merge the pull request!
 
@@ -116,15 +116,15 @@ git push origin MY-FEATURE
 To learn more about keeping your fork up to date view this [article](https://help.github.com/articles/syncing-a-fork/). When there is an update, in your terminal inside your local repo:
 
 ```
-git checkout master
-git pull upstream master
+git checkout main
+git pull upstream main
 ```
 
-This will update your fork's master branch to match upstream. Then, to update your feature branch, run:
+This will update your fork's main branch to match upstream. Then, to update your feature branch, run:
 
 ```
 git checkout MY-FEATURE
-git merge master
+git merge main
 ```
 
 If there is a merge conflict that cannot be resolved automatically, the output from the `git pull` command will read: "Automatic merge has failed; fix conflicts and then commit the result." For more information, read this [article](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/).
@@ -143,7 +143,7 @@ npm install
 
 We use [Travis](https://travis-ci.org/github/codeforboston/harm-reduction) for automated testing and deployment.
 
-Tests run on all branches and for pull requests. On master, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase.
+Tests run on all branches and for pull requests. On main, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase.
 
 The deployment is configured with environment variables set in [Travis settings](https://travis-ci.org/github/codeforboston/harm-reduction/settings):
 
