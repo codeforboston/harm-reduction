@@ -32,6 +32,8 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 [Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)
 
+[Research/Requirements Wiki (Private)](https://github.com/maiam6242/harm-reduction-docs)
+
 ## Getting Started
 
 1. Join us on [Slack](http://slack.codeforboston.org) at #harm-reduction
