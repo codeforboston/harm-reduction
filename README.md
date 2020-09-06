@@ -32,7 +32,6 @@ The SUDI office offers support and resources as well as ongoing care in these co
 
 [Shared Google Drive Folder](https://drive.google.com/drive/folders/14Q1e3VCWJSqldykqSxwEAwAdSq6dMnl3?usp=sharing)
 
-
 ## Getting Started
 
 1. Join us on [Slack](http://slack.codeforboston.org) at #harm-reduction
@@ -144,9 +143,9 @@ We use Jest for DOM and unit tests. Run `npm test` to get started. Tests run aut
 
 We use [Travis](https://travis-ci.org/github/codeforboston/harm-reduction) for automated testing and deployment.
 
-Tests run on all branches and for pull requests. On main, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase. 
+Tests run on all branches and for pull requests. On main, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase.
 
-The main Firebase project, where the demo is hosted, is [cfb-harm-reduction](https://console.firebase.google.com/project/cfb-harm-reduction). [cfb-harm-reduction-dev](https://console.firebase.google.com/project/cfb-harm-reduction) is used for development. Both use the Spark plan, which enforces free limits on usage. 
+The main Firebase project, where the demo is hosted, is [cfb-harm-reduction](https://console.firebase.google.com/project/cfb-harm-reduction). [cfb-harm-reduction-dev](https://console.firebase.google.com/project/cfb-harm-reduction) is used for development. Both use the Spark plan, which enforces free limits on usage.
 
 The deployment is configured with environment variables set in [Travis settings](https://travis-ci.org/github/codeforboston/harm-reduction/settings):
 
