@@ -145,7 +145,9 @@ npm install
 
 We use [Travis](https://travis-ci.org/github/codeforboston/harm-reduction) for automated testing and deployment.
 
-Tests run on all branches and for pull requests. On main, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase.
+Tests run on all branches and for pull requests. On main, after tests pass, we deploy the [site](https://cfb-harm-reduction.web.app/) using Firebase. 
+
+The main Firebase project, where the demo is hosted, is [cfb-harm-reduction](https://console.firebase.google.com/project/cfb-harm-reduction). [cfb-harm-reduction-dev](https://console.firebase.google.com/project/cfb-harm-reduction) is used for development. Both use the Spark plan, which enforces free limits on usage. 
 
 The deployment is configured with environment variables set in [Travis settings](https://travis-ci.org/github/codeforboston/harm-reduction/settings):
 
