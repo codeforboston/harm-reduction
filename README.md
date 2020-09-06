@@ -138,7 +138,7 @@ npm install
 
 ## Testing
 
-//TODO
+We use Jest for DOM and unit tests. Run `npm test` to get started. Tests run automatically when a pull request is opened.
 
 ## CI/CD Setup
 
