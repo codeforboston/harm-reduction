@@ -22,3 +22,5 @@ jobs:
       deploy:
         provider: firebase
         edge: true
+        on:
+          branch: main
