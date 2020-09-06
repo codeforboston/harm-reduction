@@ -37,14 +37,21 @@ const LoginForm = () => {
     update({ isSigningIn: true });
     auth
       .signInWithEmailAndPassword(state.email, state.password)
-      .catch(({ code }) => update({ error: getErrorMessage(code) }))
+      .catch(({ code }) => update({ error: getLoginErrorMessage(code) }))
+      .finally(() => update({ isSigningIn: false }));
+  };
+
+  const register = () => {
+    auth
+      .createUserWithEmailAndPassword(state.email, state.password)
+      .catch(({ code }) => update({ error: getRegistrationErrorMessage(code) }))
       .finally(() => update({ isSigningIn: false }));
   };
 
   return (
     <Form onSubmit={login} style={{ marginBottom: '20px' }}>
       <Form.Group controlId="email">
-        <Form.Label>Email</Form.Label>
+        <Form.Label>Email:</Form.Label>
         <Form.Control
           required
           value={state.email}
@@ -57,7 +64,7 @@ const LoginForm = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Password:</Form.Label>
         <Form.Control
           required
           value={state.password}
@@ -68,15 +75,28 @@ const LoginForm = () => {
         <Form.Control.Feedback type="invalid">
           {state.error.password}
         </Form.Control.Feedback>
+        <br />
+        <Button variant="primary" type="submit" disabled={state.isSigningIn}>
+          Log In
+          <br />
+          (existing users)
+        </Button>
+        <Button
+          className="register-button"
+          variant="primary"
+          disabled={state.isSigningIn}
+          onClick={register}
+        >
+          Register
+          <br />
+          (first-time users)
+        </Button>
       </Form.Group>
       {state.error.other && (
         <div style={{ color: 'red', marginBottom: '10px' }}>
           {state.error.other}
         </div>
       )}
-      <Button variant="primary" type="submit" disabled={state.isSigningIn}>
-        Log In
-      </Button>
       {state.isSigningIn && (
         <Spinner
           as="span"
@@ -94,7 +114,7 @@ const LoginForm = () => {
   );
 };
 
-const getErrorMessage = code => {
+const getLoginErrorMessage = code => {
   switch (code) {
     case 'auth/invalid-email':
       return { email: 'Invalid email' };
@@ -104,6 +124,21 @@ const getErrorMessage = code => {
       return { email: 'User not found' };
     case 'auth/wrong-password':
       return { password: 'Wrong password' };
+    default:
+      return { other: 'Something went wrong. Please try again later.' };
+  }
+};
+
+const getRegistrationErrorMessage = code => {
+  switch (code) {
+    case 'auth/email-already-in-use':
+      return { email: 'Email already in use' };
+    case 'auth/invalid-email':
+      return { email: 'Invalid email' };
+    case 'auth/operation-not-allowed':
+      return { email: 'New accounts not allowed' };
+    case 'auth/weak-password':
+      return { password: 'Password is too weak' };
     default:
       return { other: 'Something went wrong. Please try again later.' };
   }
