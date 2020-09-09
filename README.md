@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/codeforboston/harm-reduction.svg?branch=main)](https://travis-ci.org/codeforboston/harm-reduction)
 
-[Demo App](https://cfb-harm-reduction.web.app/)
+[Demo App](https://cfb-harm-reduction.web.app/). Create your own account or use this demo account: Username `test@test.com`, Password `password1`
 
 ## About the Project
 
